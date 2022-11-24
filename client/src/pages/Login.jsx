@@ -45,8 +45,13 @@ const Text = styled(Typography)`
 
 
 const Login = () => {
-
+    
+    // const [signup, setSignup] = useState(signupInitialValues); 
     const [account, toggleAccount] = useState('login'); // passing login state by default
+    
+    // const onInputChange = (e) => {
+    //     setSignup({ ...signup, [e.target.name]: e.target.value });
+    // }
     
     const toggleSignup = () => {
         account === 'signup' ? toggleAccount('login') : toggleAccount('signup');  // check the value
