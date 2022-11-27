@@ -1,30 +1,27 @@
 //DEPENDENCIES
-import express from 'express';
-import dotenv from 'dotenv';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import router from "./routes/route.js";
+require('dotenv').config()
+const express = require('express');
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose');
+const cors = require("cors");
+const app = express();
+
 
 
 //CONFIGURATION
-dotenv.config();
-const app = express();
-app.use(cors())
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true },
+        () => { console.log('connected to mongo: ', process.env.MONGO_URI) }
+)
+// Express Settings
+app.use(cors());
 app.use(express.json());
-// use mongoose to connect this app to our database on mongoDB using the MONGO_URL (connection string)
-mongoose
-        .connect(
-                process.env.MONGO_URI,
-                {       // these are options to ensure that the connection is done properly
-                        useNewUrlParser: true,
-                        useUnifiedTopology: true
-                },() => { console.log('connected to mongo: ', process.env.MONGO_URI)})
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 //routes
 app.get('/', (req, res) => res.send("Hello World"));
-app.use('/', router);
+app.use('/user', require('./routes/userRoutes'));
+app.use('/blog', require('./routes/blogRoutes'));
 
 
 
