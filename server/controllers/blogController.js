@@ -55,7 +55,7 @@ const updateBlog = async (req, res) => {
     return res.status(200).json({ blog });
 }
 //getBlogs
-const getBlogs = async (req, res) => {
+const getAllBlogs = async (req, res) => {
     let blogs;
     try {
         blogs = await Blog.find().populate("user");
@@ -122,7 +122,7 @@ module.exports = {
     deleteBlog,
     updateBlog,
     createBlog,
-    getBlogs,
+    getAllBlogs,
     getBlogById,
     getByUserId
 

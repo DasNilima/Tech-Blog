@@ -3,7 +3,7 @@ const router = express.Router()
 const auth = require('../middleware/defineCurrentUser');
 
 const {
-    getBlogs,
+    getAllBlogs,
     createBlog,
     updateBlog,
     deleteBlog,
@@ -11,7 +11,7 @@ const {
     getByUserId
 } = require('../controllers/blogController')
 
-router.get('/', [auth], getBlogs)
+router.get('/', [auth], getAllBlogs)
 
 router.post('/create', [auth], createBlog)
 
