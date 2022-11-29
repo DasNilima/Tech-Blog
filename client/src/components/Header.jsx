@@ -15,13 +15,12 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store";
 
 
 const pages = ['MyBlogs', 'create'];
-const auths = [ 'Allblogs', 'Login', 'Signup']
+const auths = [ 'Allblogs', 'login', 'signup']
 const settings = ['Profile','Logout'];
 
 function Header() { 
@@ -146,7 +145,7 @@ return (
                     {isLoggedIn && (
                             <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                        <Avatar alt="Remy Sharp"src="/logo-img.png" />
                                     </IconButton>
                             </Tooltip>
                         )}
