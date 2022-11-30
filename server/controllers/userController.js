@@ -88,7 +88,7 @@ const login = async (req, res) => {
             return res.status(401).send({ message: "Invalid credentials" });
         }
     })// create a JWT on log in
-    const result =  jwt.encode(process.env.JWT_SECRET, { id: user.userId })
+    const result =  jwt.encode(process.env.JWT_SECRET, { id: user.userId }) // getting the userid when logged in
     res.json({ user: user, token: result.value })  
 }
 
