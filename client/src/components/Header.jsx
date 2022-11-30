@@ -19,8 +19,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store";
 
 
-const pages = ['MyBlogs', 'create'];
-const auths = [ 'Allblogs', 'login', 'signup']
+const pages = [ 'Allblogs','MyBlogs', 'create'];
+const auths = [  'login', 'signup']
 const settings = ['Profile','Logout'];
 
 function Header() { 

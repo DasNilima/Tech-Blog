@@ -5,6 +5,8 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from "react-redux";
 import { store } from "./store";
+// import CurrentUserProvider from './contexts/CurrentUser'
+
 
 import reportWebVitals from './reportWebVitals';
 
@@ -15,7 +17,7 @@ root.render(
     <Provider store={store}>
         <App />
         </Provider>
-        </BrowserRouter>
+      </BrowserRouter>
   </React.StrictMode>
 );
 

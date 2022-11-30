@@ -1,4 +1,4 @@
-const User = require('../models/user.js');
+const User = require('../models/user');
 const jwt = require('json-web-token')
 
 //use Express middleware to look up the logged-in user
@@ -6,7 +6,7 @@ async function defineCurrentUser(req, res, next){
     try {
         const [ method, token ] = req.headers.authorization.split(' ')
         if(method == 'Bearer'){
-            const result = await jwt.decode(process.env.JWT_SECRET, {expiresIn: "1min"})
+            const result = await jwt.decode(process.env.JWT_SECRET, token)
             const { id } = result.value
             let user = await User.findOne({ 
                 where: {

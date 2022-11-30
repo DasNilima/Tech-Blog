@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { authActions } from "../../store";
+// import { CurrentUser } from "../../contexts/CurrentUser"
 
 const Div = styled(Box)`
     width: 400px;
@@ -39,6 +40,7 @@ const LoginButton = styled(Button)`
 const Login = () => {
     const dispatch = useDispatch();
     const history = useNavigate();
+    // const { setCurrentUser } = useContext(CurrentUser)
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
@@ -65,7 +67,8 @@ const Login = () => {
         console.log(credentials);
         // send http request
         sendRequest()
-            .then((data) => localStorage.setItem('token', data.token))
+            // .then((data) => localStorage.setItem('token', data.token))
+            .then((data) => localStorage.setItem("userId", data.user._id))
             .then(() => dispatch(authActions.login()))
             .then(() => history("myBlogs"));
     };

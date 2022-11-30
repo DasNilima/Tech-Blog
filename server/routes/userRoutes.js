@@ -8,10 +8,14 @@ const {
     signup,
     login,
     getProfile,
-    updateUser
+    updateUser,
+    // profile,
 } = require('../controllers/userController')
 
+
+
 router.get('/', getAllUser)
+// router.get('/profile', profile)
 router.post('/signup', signup)
 router.post('/login', login);
 router.post('/profile', [auth], getProfile);
