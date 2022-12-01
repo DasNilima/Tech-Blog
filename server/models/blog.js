@@ -11,6 +11,7 @@ const blogSchema =  new mongoose.Schema({
     },
     image: {
         type: String,
+        required: true,
         default: 'http://placekitten.com/350/350',
     },
     user: {

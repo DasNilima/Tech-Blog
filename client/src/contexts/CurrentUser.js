@@ -7,7 +7,7 @@
 //     useEffect(() => {
 //         // Fetch the current user on page load
 //         const getLoggedUser = async () => {
-//             let response = await fetch('/user/profile', {
+//             let response = await fetch('/user/login', {
 //                 // Include the JWT in fetch requests
 //             headers: {
 //                 'Authorization': `Bearer ${localStorage.getItem('token')}`

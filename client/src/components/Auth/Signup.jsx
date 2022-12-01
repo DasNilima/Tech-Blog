@@ -50,7 +50,7 @@ const Signup = () => {
         }));
     };
     const sendRequest = async () => {
-        const res = await axios.post('/user/signup', {
+        const res = await axios.post('/signup', {
             name: credentials.name,
             email: credentials.email,
             password: credentials.password,
@@ -62,14 +62,16 @@ const Signup = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // send http request
-        sendRequest().then(() => history("/login"));
+        sendRequest()
+            .then((data) => localStorage.setItem("userId", data.user.id))
+            .then(() => history("/login"));
     };
         return (
             <Div>
                 <form onSubmit={handleSubmit}>
                     <Box style={{ marginTop: 30, textAlign: 'center' }}>
                         <Image src="/logo-img.png" alt="blog" />
-                        <Typography variant="h4" >Login</Typography>
+                        <Typography variant="h4" >SignUp</Typography>
                         <Wrapper>
                         <TextField
                                 name="name"

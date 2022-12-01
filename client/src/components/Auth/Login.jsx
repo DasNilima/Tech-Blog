@@ -54,7 +54,7 @@ const Login = () => {
         }));
     };
     const sendRequest = async () => {
-        const res = await axios.post('/user/login', {
+        const res = await axios.post("/user/login", {
             email: credentials.email,
             password: credentials.password,
         })
@@ -67,10 +67,10 @@ const Login = () => {
         console.log(credentials);
         // send http request
         sendRequest()
-            // .then((data) => localStorage.setItem('token', data.token))
-            .then((data) => localStorage.setItem("userId", data.user._id))
+            .then((data) => localStorage.setItem('token', data.token))
+            // .then((data) => localStorage.setItem("userId", data.user._id))
             .then(() => dispatch(authActions.login()))
-            .then(() => history("myBlogs"));
+            .then(() => history("/Allblogs"));
     };
         return (
             <Div>

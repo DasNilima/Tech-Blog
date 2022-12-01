@@ -7,6 +7,7 @@ const User = require('../models/user');
 
 const createBlog = async (req, res) => {
     const { title, content, image, user } = req.body;
+    
     let existingUser;
     try {
         existingUser = await User.findById(user);
@@ -21,21 +22,22 @@ const createBlog = async (req, res) => {
         content,
         image,
         user,
-    }); 
+    });
     try {
         const session = await mongoose.startSession();
         session.startTransaction();
         await blog.save({ session });
-        // existingUser.blogs.push(blog);
+        existingUser.blogs.push(blog);
         await existingUser.save({ session });
         await session.commitTransaction();
     } catch (err) {
         console.log(err);
         return res.status(500).json({ message: err });
     }
+
     return res.status(200).json({ blog });
 };
-    
+
 //UpdateBlog
 const updateBlog = async (req, res) => {
     const { title, content } = req.body;

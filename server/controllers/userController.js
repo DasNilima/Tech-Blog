@@ -53,7 +53,7 @@ const signup = async (req, res, next) => {
         .status(400)
         .json({ message: "User Already Exists! Login Instead" });
     }
-    const hashedPassword = bcrypt.hashSync(password);
+    const hashedPassword = bcrypt.hashSync(password, 10);
   
     const user = new User({
       name,

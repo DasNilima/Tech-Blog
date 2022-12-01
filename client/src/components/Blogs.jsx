@@ -6,7 +6,7 @@ const Blogs = () => {
     const [blogs, setBlogs] = useState();
     const sendRequest = async () => {
         const res = await axios
-        .get("/blog")
+        .get("/blogs")
         .catch((err) => console.log(err));
         const data = await res.data;
         return data;
@@ -18,7 +18,7 @@ const Blogs = () => {
     return (
     <div>
         {blogs &&
-        blogs.map((blog, index) => (
+            blogs.map((blog, index) => (
             <Blog
             id={blog._id}
             isUser={localStorage.getItem("userId") === blog.user_id}
