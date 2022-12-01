@@ -5,15 +5,13 @@ import Blog from "./Blog";
 const Blogs = () => {
     const [blogs, setBlogs] = useState();
     const sendRequest = async () => {
-        const res = await axios
-        .get("/blogs")
-        .catch((err) => console.log(err));
+        const res = await axios.get("/blog").catch((err) => console.log(err));
         const data = await res.data;
         return data;
     };
         useEffect(() => {
     sendRequest().then((data) => setBlogs(data.blogs));
-    });
+    },[]);
     console.log(blogs);
     return (
         <div>
@@ -24,7 +22,7 @@ const Blogs = () => {
                 key={index}   
                 isUser={localStorage.getItem("userId") === blog.user._id}
                 title={blog.title}
-                content={blog.centent}
+                content={blog.content}
                 imageURL={blog.image}
                 userName={blog.user.name}
             />
@@ -34,3 +32,4 @@ const Blogs = () => {
 };
 
 export default Blogs;
+

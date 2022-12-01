@@ -101,15 +101,12 @@ const updateUser = async (req, res) => {
 
 }
 
-// const profile = async (req, res) => {
-//     res.json(req.currentUser)
-// }
+
 
 module.exports = {
     getAllUser,
     login,
     signup,
-    // profile,
     getProfile,
     updateUser
 }

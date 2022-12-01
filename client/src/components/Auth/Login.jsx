@@ -40,7 +40,7 @@ const LoginButton = styled(Button)`
 const Login = () => {
     const dispatch = useDispatch();
     const history = useNavigate();
-    
+
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
@@ -69,7 +69,7 @@ const Login = () => {
             // .then((data) => localStorage.setItem('token', data.token))
             .then((data) => localStorage.setItem("userId", data.user._id))
             .then(() => dispatch(authActions.login()))
-            .then(() => history("/blogs"));
+            .then(() => history("/blog"));
     };
         return (
             <Div>

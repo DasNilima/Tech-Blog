@@ -29,7 +29,7 @@ const Blog = ({ title, content, imageURL, userName, isUser, id }) => {
     const handleDelete = () => {
     deleteRequest()
         .then(() => navigate("/"))
-        .then(() => navigate("/blogs"));
+        .then(() => navigate("/blog"));
     };
     return (
         <div>
@@ -69,7 +69,7 @@ const Blog = ({ title, content, imageURL, userName, isUser, id }) => {
             />
             <CardMedia
                 component="img"
-                height="194"
+                height="150"
                 image={imageURL}
                 alt="blog"
             />
@@ -80,7 +80,8 @@ const Blog = ({ title, content, imageURL, userName, isUser, id }) => {
                 variant="body2"
                 color="text.secondary"
                 >
-                <b>{userName}</b> {": "} {content}
+                <b>{userName}</b> {": "} 
+                {content}
                 </Typography>
             </CardContent>
         </Card>
