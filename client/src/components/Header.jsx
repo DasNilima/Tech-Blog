@@ -19,7 +19,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store";
 
 
-const pages = [ 'Allblogs','MyBlogs', 'create'];
+
+const pages = [ 'Allblogs','MyBlogs', 'CreateBlog'];
 const auths = [  'login', 'signup']
 const settings = ['Profile','Logout'];
 
@@ -95,7 +96,7 @@ return (
                                         isLoggedIn && (
                                     <MenuItem key={page} onClick={handleCloseNavMenu}>
                                             <Typography textAlign="center">
-                                                <Link to={`/${page}`}>{page}</Link>
+                                                    <Link to={`/${page}`}>{page}</Link>
                                             </Typography>
                                     </MenuItem>
                                     )
