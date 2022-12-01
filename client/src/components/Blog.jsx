@@ -29,7 +29,7 @@ const Blog = ({ title, content, imageURL, userName, isUser, id }) => {
     const handleDelete = () => {
     deleteRequest()
         .then(() => navigate("/"))
-        .then(() => navigate("/blog"));
+        .then(() => navigate("/myBlogs"));
     };
     return (
         <div>
