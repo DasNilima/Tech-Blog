@@ -15,18 +15,13 @@ const blogSchema =  new mongoose.Schema({
         default: 'http://placekitten.com/350/350',
     },
     user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: "User",
         required: true,
     },
-    // categories: {
-    //     type: Array,
-    //     required: false,
-    // },
 },{
     timestamps: true,
 }
 );
 
 module.exports = mongoose.model('Blog', blogSchema)
-

@@ -37,7 +37,7 @@ const BlogDetail = () => {
   });
   const sendRequest = async () => {
     const res = await axios
-      .put(`/blog/update/${id}`, {
+      .put(`/blog/${id}`, {
         title: newBlog.title,
         content: newBlog.content,
       })
@@ -108,7 +108,7 @@ const BlogDetail = () => {
             color="secondary"
             type="submit"
           >
-          Create Blog
+          Update Blog
           </Button>
         </Box>
         </form>

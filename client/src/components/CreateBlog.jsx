@@ -102,4 +102,4 @@ const CreateBlog = () => {
 }
 
 
-export default CreateBlog
+export default CreateBlog;

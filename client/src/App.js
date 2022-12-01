@@ -14,7 +14,6 @@ import Blogs from './components/Blogs';
 import UserBlogs from './components/UserBlogs';
 import BlogDetail from './components/BlogDetail';
 import CreateBlog from './components/CreateBlog';
-import Profile from './components/Profile';
 
 
 function App() {
@@ -38,15 +37,13 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/signup" element={<Signup />}></Route>
               <Route path="/login" element={<Login />}></Route>
-              <Route path="Profile" element={<Profile />}></Route>
-              <Route path="/AllBlogs" element={<Blogs />}></Route>
-              <Route path="/CreateBlog" element={<CreateBlog />}></Route>
+              <Route path="/blogs" element={<Blogs />}></Route>
+              <Route path="/blog/create" element={<CreateBlog />}></Route>
               <Route path="myBlogs" element={<UserBlogs />}></Route>
               <Route path="/myBlogs/:id" element={<BlogDetail />}></Route> 
         </Routes>
     </main>
       </React.Fragment>
-  
   );
 }
 

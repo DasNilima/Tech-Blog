@@ -11,25 +11,26 @@ const Blogs = () => {
         const data = await res.data;
         return data;
     };
-    useEffect(() => {
-        sendRequest().then((data) => setBlogs(data.blogs));
-    }, []);
+        useEffect(() => {
+    sendRequest().then((data) => setBlogs(data.blogs));
+    });
     console.log(blogs);
     return (
-    <div>
+        <div>
         {blogs &&
             blogs.map((blog, index) => (
             <Blog
-            id={blog._id}
-            isUser={localStorage.getItem("userId") === blog.user_id}
-            title={blog.title}
-            content={blog.content}
-            imageURL={blog.image}
-            userName={blog.user.name}
-        />
-        ))}
-    </div>
-);
+                id={blog._id}
+                key={index}   
+                isUser={localStorage.getItem("userId") === blog.user._id}
+                title={blog.title}
+                content={blog.centent}
+                imageURL={blog.image}
+                userName={blog.user.name}
+            />
+            ))}
+        </div>
+    );
 };
 
 export default Blogs;

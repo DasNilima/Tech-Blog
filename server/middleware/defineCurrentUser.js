@@ -4,10 +4,15 @@ const jwt = require('json-web-token')
 //use Express middleware to look up the logged-in user
 async function defineCurrentUser(req, res, next){
     try {
-        const [ method, token ] = req.headers.authorization.split(' ')
-        if(method == 'Bearer'){
+         // Split the authorization header into [ "Bearer", "TOKEN" ]:
+        const [authenticationMethod, token] = req.headers.authorization.split(' ')
+        
+        if (authenticationMethod == 'Bearer') {
+            // Decode the JWT
             const result = await jwt.decode(process.env.JWT_SECRET, token)
+            // Get the logged in user's id from the payload
             const { id } = result.value
+             // Find the user object using their id:
             let user = await User.findOne({ 
                 where: {
                     userId: id
@@ -23,22 +28,3 @@ async function defineCurrentUser(req, res, next){
 }
 
 module.exports = defineCurrentUser
-
-// module.exports = function(req, res, next){
-
-//     // Check for the token
-//     const token = req.header('x-auth-token');
-
-//     // Check if not token
-//     if(!token) return res.status(401).json([{message: 'No token, authorization denied', type: 'error'}]);
-
-//     // Verify token
-//     try {
-//         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-//         req.user = decoded.user;
-//         next();
-//     } catch (err) {
-//         res.status(401).json([{message: 'Token is not valid', type: 'error'}]);
-//     }
-// }

@@ -38,10 +38,10 @@ const LoginButton = styled(Button)`
 const Signup = () => {
     const history = useNavigate();
     const [credentials, setCredentials] = useState({
+        name: "",
         email: "",
         password: "",
     });
-    // const [errorMessage, setErrorMessage] = useState(null)
 
     const handleChange = (e) => {
         setCredentials((prevState) => ({
@@ -50,7 +50,7 @@ const Signup = () => {
         }));
     };
     const sendRequest = async () => {
-        const res = await axios.post('/signup', {
+        const res = await axios.post('/user/signup', {
             name: credentials.name,
             email: credentials.email,
             password: credentials.password,
@@ -63,7 +63,7 @@ const Signup = () => {
         e.preventDefault();
         // send http request
         sendRequest()
-            .then((data) => localStorage.setItem("userId", data.user.id))
+            // .then((data) => localStorage.setItem("userId", data.user.id))
             .then(() => history("/login"));
     };
         return (
