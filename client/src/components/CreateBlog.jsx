@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const labelStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
 
 const CreateBlog = () => {
+  
   const navigate = useNavigate();
   const [newBlog, setNewBlog] = useState({
     title: "",
@@ -27,8 +28,9 @@ const CreateBlog = () => {
         user: localStorage.getItem("userId"),
       })
       .catch((err) => console.log(err));
-      const data = await res.data;
-      return data;
+      
+    const data = await res.data;
+    return data;
   };
   const handleSubmit = (e) => {
     e.preventDefault();
