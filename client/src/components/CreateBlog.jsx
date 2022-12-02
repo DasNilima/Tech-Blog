@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-const labelStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
+const labelStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold"};
 
 const CreateBlog = () => {
   
@@ -46,19 +46,19 @@ const CreateBlog = () => {
           border={3}
           borderColor="linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)"
           borderRadius={10}
-          boxShadow="10px 10px 20px #ccc"
+          boxShadow="10px 10px 5px 0px rgba(0,0,0,0.76)"
           padding={3}
           margin={"auto"}
           marginTop={3}
           display="flex"
           flexDirection={"column"}
           width={"50%"}
+          sx={{ width:"80%" ,display: { xs: 'flex', md: 'flex' } }}
         >
           <Typography
             fontWeight={"bold"}
             padding={3}
-            color="grey"
-            variant="h3"
+            variant="h4"
             textAlign={"center"}
           >
           Create Your Blog
@@ -70,6 +70,7 @@ const CreateBlog = () => {
             value={newBlog.title}
             margin="auto"
             variant="outlined"
+          
           />
           <InputLabel sx={labelStyles}>Content</InputLabel>
           <TextField

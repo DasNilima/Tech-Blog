@@ -76,7 +76,7 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                     <Box style={{ marginTop: 30, textAlign: 'center' }}>
                         <Image src="/logo-img.png" alt="blog" />
-                        <Typography variant="h4" >Login</Typography>
+                        <Typography variant="h4" >Sign In</Typography>
                         <Wrapper>
                             <TextField
                                 name="email"
@@ -98,7 +98,7 @@ const Login = () => {
                                 />
                         </Wrapper>
                         <LoginButton variant="contained" type="submit">
-                            Login
+                            Sign In
                         </LoginButton>
                         </Box>
                 </form>

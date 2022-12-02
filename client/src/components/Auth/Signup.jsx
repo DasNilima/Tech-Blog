@@ -101,7 +101,7 @@ const Signup = () => {
                                 />
                         </Wrapper>
                         <LoginButton variant="contained" type="submit">
-                            SignUp
+                            Sign Up
                         </LoginButton>
                         </Box>
                 </form>

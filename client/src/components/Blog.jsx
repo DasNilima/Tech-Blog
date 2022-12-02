@@ -36,18 +36,18 @@ const Blog = ({ title, content, imageURL, userName, isUser, id }) => {
             {" "}
             <Card
             sx={{
-                width: "40%",
+                maxWidth: 345,
                 margin: "auto",
                 mt: 2,
                 padding: 2,
-                boxShadow: "5px 5px 10px #ccc",
+                boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.76)",
                 ":hover": {
                 boxShadow: "10px 10px 20px #ccc",
                 },
-            }}
+                }}
             >
             {isUser && (
-                <Box display="flex">
+                <Box display="flex" >
                 <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
                     <ModeEditOutlineIcon color="warning" />
                 </IconButton>
@@ -69,13 +69,12 @@ const Blog = ({ title, content, imageURL, userName, isUser, id }) => {
             />
             <CardMedia
                 component="img"
-                height="150"
+                height="194"
                 image={imageURL}
                 alt="blog"
             />
             <CardContent>
                 <hr />
-                <br />
                 <Typography
                 variant="body2"
                 color="text.secondary"

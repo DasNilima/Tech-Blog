@@ -7,7 +7,7 @@ import { authActions } from "./store";
 
 //components
 import Home from './components/Home';
-import Login from './components/Auth/Login';
+import Login from './components/Auth/Signin';
 import Signup from './components/Auth/Signup';
 import Header from './components/Header';
 import Blogs from './components/Blogs';
@@ -35,8 +35,8 @@ function App() {
     <main>
         <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/signup" element={<Signup />}></Route>
-              <Route path="/login" element={<Login />}></Route>
+              <Route path="/Signup" element={<Signup />}></Route>
+              <Route path="/Signin" element={<Login />}></Route>
               <Route path="/blog" element={<Blogs />}></Route>
               <Route path="CreateBlog" element={<CreateBlog />}></Route>
               <Route path="myBlogs" element={<UserBlogs />}></Route>
