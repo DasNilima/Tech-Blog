@@ -19,8 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store";
 
 
-
-const pages = [ 'blog','myBlogs', 'CreateBlog'];
+const pages = [ 'Blog','myBlogs', 'CreateBlog'];
 const auths = [  'login', 'signup']
 const settings = ['Profile','Logout'];
 
