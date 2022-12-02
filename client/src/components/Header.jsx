@@ -49,7 +49,6 @@ return (
         sx={{ background: "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)",}}>
         <Container maxWidth="xl">
             <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                 <Typography
                         variant="h6"
                         noWrap
@@ -100,9 +99,33 @@ return (
                                     </MenuItem>
                                     )
                                 ))}
+                    </Menu>
+                    <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                                open={Boolean(anchorElNav)}
+                                onClose={handleCloseNavMenu}
+                                sx={{ display: { xs: 'block', md: 'none'}}}>
+                                    {auths.map((auth) => (
+                                        !isLoggedIn && (
+                                    <MenuItem key={auth} onClick={handleCloseNavMenu}>
+                                            <Typography textAlign="center" >
+                                                    <Link to={`/${auth}`}>{auth}</Link>
+                                            </Typography>
+                                    </MenuItem>
+                                    )
+                                ))}
                             </Menu>
                         </Box>
-            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h6"
                         noWrap

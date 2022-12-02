@@ -24,8 +24,13 @@ function Home() {
               />
             </video>
           </CardCover>
-          <CardContent>
-              <Typography variant="h4" align="center" color="primary" mt={{ xs: 12, sm: 18 }}>
+          <CardContent >
+            <Typography
+                variant="h4"
+                align="center"
+                color="primary"
+                mt={{ xs: 12, sm: 18 }}
+              >
                 Welcome To TECH-BLOG
               </Typography>
           </CardContent>
