@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const cors = require("cors");
 const app = express();
 const defineCurrentUser = require('./middleware/defineCurrentUser')
-
+const path = require('path')
 
 //CONFIGURATION
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true },
