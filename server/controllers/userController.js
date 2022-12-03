@@ -92,14 +92,19 @@ const login = async (req, res) => {
     res.json({ user: user, token: result.value })  
 }
 
+// const logout = (req, res, next) => {
 
-const getProfile = async (req, res) => {
-
-}
-
-const updateUser = async (req, res) => {
-
-}
+//   if (!token) {
+//     return res.status(400).json({ message: "Couldn't find token" });
+//   }
+//   jwt.verify(String(token), process.env.JWT_SECRET_KEY, (err, user) => {
+//     if (err) {
+//       console.log(err);
+//       return res.status(403).json({ message: "Authentication failed" });
+//     }
+//     return res.status(200).json({ message: "Successfully Logged Out" });
+//   });
+// };
 
 
 
@@ -107,6 +112,5 @@ module.exports = {
     getAllUser,
     login,
     signup,
-    getProfile,
-    updateUser
+    // logout
 }

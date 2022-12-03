@@ -17,13 +17,15 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store";
 
+
 const auths = [  'Signin', 'Signup']
 const pages = ['Blog', 'myBlogs', 'CreateBlog'];
-const settings = ['Profile', 'Logout'];
+const settings = ['Logout'];
 
 function Header() { 
     const dispatch = useDispatch();
-    const isLoggedIn = useSelector((state) => state.isLoggedIn)
+    const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    const handleLogout = () => { dispatch(authActions.logout())};
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     
@@ -114,32 +116,32 @@ return (
                             textDecoration: 'none',
                             }}>TECH-BLOG
                         </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ flexGrow: -2, display: { xs: 'none', md: 'flex' } }}>
                             { isLoggedIn && (
                                     pages.map((page) => (
                                         <Button  key={page}
                                             onClick={handleCloseNavMenu}
-                                            variant="contained" sx={{ margin: 1, borderRadius: 10 }}>
+                                            variant="contained" color="warning" sx={{ margin: 1, borderRadius: 10 }}>
                                             <Link to={`/${page}`}>{page}</Link>
                                         </Button>
                                     ))
                             )}
                     </Box>
-                    <Box sx={{ flexGrow: -4, display: { xs: 'none', md: 'flex' } }}>
-                                {!isLoggedIn && (
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'none' } }}>
+                                { isLoggedIn && (
                                         auths.map((auth) => (
-                                            <Button key={auth} onClick={handleOpenNavMenu} variant="contained" sx={{ margin: 1, borderRadius: 10 }}  >
-                                                <Typography textAlign="center">
+                                            <Button key={auth} onClick={handleCloseNavMenu} variant="contained" sx={{ margin: 1, borderRadius: 10 }}  >
+                                                <Typography textAlign="center" >
                                                     <Link to={`/${auth}`}>{auth}</Link>
                                                 </Typography>
                                             </Button>
                                         )
                                 ))}
                     </Box>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex', justifyContent: 'flex-end' } }}>
                                 {!isLoggedIn && (
                                         auths.map((auth) => (
-                                            <Button key={auth} onClick={handleOpenNavMenu} variant="contained" sx={{ margin: 0.5, borderRadius: 6 }}  >
+                                            <Button key={auth} onClick={handleOpenNavMenu} variant="contained" color="warning" sx={{ margin: 0.5, borderRadius: 6 }}  >
                                                 <Typography textAlign="center" >
                                                     <Link to={`/${auth}`}>{auth}</Link>
                                                 </Typography>
@@ -173,7 +175,7 @@ return (
                                                 isLoggedIn && (
                                             <MenuItem key={setting} onClick={handleCloseUserMenu} >
                                                 <Typography textAlign="center">
-                                                    <Link   onClick={() => dispatch(authActions.logout())}
+                                                    <Link  onClick={handleLogout}
                                                         to={`/${setting}`}>{setting} </Link>
                                                 </Typography>
                                         </MenuItem>

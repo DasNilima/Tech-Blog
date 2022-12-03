@@ -7,8 +7,7 @@ const {
     getAllUser,
     signup,
     login,
-    getProfile,
-    updateUser,
+    // logout
 } = require('../controllers/userController')
 
 
@@ -16,7 +15,7 @@ const {
 router.get('/', getAllUser)
 router.post('/signup', signup)
 router.post('/login', login);
-router.post('/profile', [auth], getProfile);
-router.post('/:id', [auth], updateUser)
+// router.post('/logout', [auth], logout);
+
 
 module.exports = router;

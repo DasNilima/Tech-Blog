@@ -18,6 +18,10 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(defineCurrentUser)
+ // LOGOUT
+ app.get('/logout', (req, res) => {
+        return res.redirect('/');
+      });
 
 
 //routes
