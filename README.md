@@ -22,10 +22,6 @@ git clone https://github.com/DasNilima/Tech-Blog.git
 ```
 -  cd into the directories and `npm install`
   ```bash
-  cd server
-  npm install
-
-  cd client
   npm install
 ```
 -   Create a `.env` file in the root directory and store the following:
@@ -34,12 +30,6 @@ git clone https://github.com/DasNilima/Tech-Blog.git
 -  Start the both server on seprate terminals
 
 ```bash
-  cd server
-  npm start
-```
-
-```bash
-  cd client
   npm start
 ```
 
