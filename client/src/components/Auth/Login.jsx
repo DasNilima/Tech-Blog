@@ -66,7 +66,6 @@ const Login = () => {
         console.log(credentials);
         // send http request
         sendRequest()
-            // .then((data) => localStorage.setItem('token', data.token))
             .then((data) => localStorage.setItem("userId", data.user._id))
             .then(() => dispatch(authActions.login()))
             .then(() => history("/blog"));
@@ -76,7 +75,7 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                     <Box style={{ marginTop: 30, textAlign: 'center' }}>
                         <Image src="/logo-img.png" alt="blog" />
-                        <Typography variant="h4" >Sign In</Typography>
+                        <Typography variant="h4" >Login</Typography>
                         <Wrapper>
                             <TextField
                                 name="email"
@@ -98,7 +97,7 @@ const Login = () => {
                                 />
                         </Wrapper>
                         <LoginButton variant="contained" type="submit">
-                            Sign In
+                            Login
                         </LoginButton>
                         </Box>
                 </form>

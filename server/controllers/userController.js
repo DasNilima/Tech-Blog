@@ -16,29 +16,6 @@ const getAllUser = async (req, res) => {
     return res.status(200).json({ users})
 }
 
-// // SIGNUP
-// const saltRounds = parseInt(process.env.SALT_ROUNDS);
-
-// const signup = async (req, res) => {
-//     const { name, email, password } = req.body;
-
-//     const user = await User.findOne({ email });
-//     if (user) {
-//         return res.status(400).send({error: "User already exists"});
-//     }
-//     bcrypt.hash(password, saltRounds, async(err, hash) => {
-//         if(err){
-//             return res.status(500).send({error: "Internal server error"});
-//         }
-//         try{
-//             const newUser = await User.create({name, email, password: hash});
-//             return res.status(201).send({user: newUser});
-//         }
-//         catch(err){
-//             return res.status(500).send({error: "Internal server error"});
-//         }
-//     });
-// };
 
 const signup = async (req, res, next) => {
     const { name, email, password } = req.body;
@@ -92,25 +69,8 @@ const login = async (req, res) => {
     res.json({ user: user, token: result.value })  
 }
 
-// const logout = (req, res, next) => {
-
-//   if (!token) {
-//     return res.status(400).json({ message: "Couldn't find token" });
-//   }
-//   jwt.verify(String(token), process.env.JWT_SECRET_KEY, (err, user) => {
-//     if (err) {
-//       console.log(err);
-//       return res.status(403).json({ message: "Authentication failed" });
-//     }
-//     return res.status(200).json({ message: "Successfully Logged Out" });
-//   });
-// };
-
-
-
 module.exports = {
     getAllUser,
     login,
     signup,
-    // logout
 }

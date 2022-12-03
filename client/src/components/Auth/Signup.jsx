@@ -63,7 +63,6 @@ const Signup = () => {
         e.preventDefault();
         // send http request
         sendRequest()
-            // .then((data) => localStorage.setItem("userId", data.user.id))
             .then(() => history("/login"));
     };
         return (

@@ -9,10 +9,11 @@ import Typography from "@material-ui/core/Typography";
 function Home() {
   return (
     <Box
-        component="ul"
+      component="ul"
         sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', p: 0, m: 0 }}>
-      <Card sx={{ minHeight: '700px', width: 500,  margin: "auto",mt: 4, padding: 2,}}>
-          <CardCover>
+      <Card sx={{ minHeight: '700px', width: 500, margin: "auto", mt: 4, padding: 2, }}
+      >
+        <CardCover>
             <video
                 autoPlay
                 loop
