@@ -55,5 +55,3 @@ You can obtain the MONGO_URI after create a collectoin on [mongodb atlas](https:
 
 
 
-
-<!-- [![Typescript Badge](https://img.shields.io/badge/-Typescript-007acc?style=for-the-badge&labelColor=black&logo=typescript&logoColor=007acc)](#) -->
