@@ -26,10 +26,10 @@ function Home() {
           </CardCover>
           <CardContent >
             <Typography
-                variant="h4"
+                variant="h5"
                 align="center"
                 color="primary"
-                mt={{ xs: 12, sm: 18 }}
+              mt={{ xs: 12, sm: 18 }}
               >
                 Welcome To TECH-BLOG
               </Typography>
