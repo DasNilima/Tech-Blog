@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(defineCurrentUser)
-
+app.use(express.static(path.resolve(__dirname, './client/build')))
 
 //routes
 app.get('/', (req, res) => res.send("Hello World"));
