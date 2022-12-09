@@ -32,7 +32,7 @@ const BlogDetail = () => {
         content: data.blog.content,
       });
     });
-  }, [id]);
+  });
   const sendRequest = async () => {
     const res = await axios
       .put(`/blog/${id}`, {

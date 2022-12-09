@@ -1,5 +1,3 @@
-
-
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -7,7 +5,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-    },
+        },
     email: {
         type: String,
         requried: true, 
@@ -16,6 +14,10 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
+    },
+    profilePic: {
+        type: String,
+        default: "",
     },
     blogs: [{  type: mongoose.Types.ObjectId, ref: "Blog"}],
 }

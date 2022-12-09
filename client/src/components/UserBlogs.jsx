@@ -30,6 +30,7 @@ const UserBlogs = () => {
             content={blog.content}
             imageURL={blog.image}
             userName={user.name}
+            date ={blog.createdAt}
           />
         ))}
     </div>

@@ -63,7 +63,8 @@ return (
                                 color: 'inherit',
                                 textDecoration: 'none',
                             }}> TECH-BLOG
-                    </Typography>
+                </Typography>
+                
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                     {isLoggedIn && (<IconButton
                         size="large"

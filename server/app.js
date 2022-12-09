@@ -5,7 +5,6 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const cors = require("cors");
 const app = express();
-const serverless = require('serverless-http');
 const defineCurrentUser = require('./middleware/defineCurrentUser')
 
 
@@ -21,13 +20,12 @@ app.use(defineCurrentUser)
 
 
 //routes
-app.get('/', (req, res) => res.send("Hello World"));
 app.use('/user', require('./routes/userRoutes'));
 app.use('/blog', require('./routes/blogRoutes'));
+
 
 
 const PORT = process.env.PORT || 8000
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 
-module.exports.handler = serverless(app);

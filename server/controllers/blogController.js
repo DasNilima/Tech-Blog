@@ -56,7 +56,7 @@ const updateBlog = async (req, res) => {
     }
     return res.status(200).json({ blog });
 }
-//getBlogs
+//getAllBlogs
 const getAllBlogs = async (req, res) => {
     let blogs;
     try {
@@ -70,7 +70,6 @@ const getAllBlogs = async (req, res) => {
     return res.status(200).json({ blogs})
 
     }
-
 // getBlogById
 
 const getBlogById = async (req, res) => {

@@ -18,13 +18,15 @@ const Blogs = () => {
         {blogs &&
             blogs.map((blog, index) => (
             <Blog
-                id={blog._id}
-                key={index}   
-                isUser={localStorage.getItem("userId") === blog.user._id}
-                title={blog.title}
-                content={blog.content}
-                imageURL={blog.image}
-                userName={blog.user.name}
+                    id={blog._id}
+                    key={index}
+                    isUser={localStorage.getItem("userId") === blog.user._id}
+                    title={blog.title}
+                    content={blog.content}
+                    imageURL={blog.image}
+                    userName={blog.user.name}
+                    date ={blog.createdAt}
+                    
             />
             ))}
         </div>

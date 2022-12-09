@@ -65,7 +65,8 @@ const Blog = ({ title, content, imageURL, userName, isUser, id }) => {
                     {userName ? userName.charAt(0) : ""}
                 </Avatar>
                 }
-                title={title}
+                    title={title}
+                    subheader = {new Date().toDateString()}
             />
             <CardMedia
                 component="img"

@@ -4,6 +4,7 @@ const blogSchema =  new mongoose.Schema({
     title: {
         type: String,
         required: true,
+
     },
     content: {
         type: String,
@@ -17,6 +18,10 @@ const blogSchema =  new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "User",
         required: true,
+    },
+    categories: {
+        type: Array,
+        required: false,
     },
 },{
     timestamps: true,
