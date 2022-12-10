@@ -1,42 +1,61 @@
-import * as React from 'react';
-import Card from '@mui/joy/Card';
-import Box from '@mui/joy/Box';
-import CardCover from '@mui/joy/CardCover';
-import CardContent from '@mui/joy/CardContent';
-import Typography from "@material-ui/core/Typography";
+import React from "react";
+import { Button, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import { Link } from "react-router-dom";
 
 
 function Home() {
   return (
-    <Box
-      component="ul"
-        sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', p: 0, m: 0 }}>
-      <Card sx={{ minHeight: '700px', width: 500, margin: "auto", mt: 4, padding: 2, }}
-      >
-        <CardCover>
-            <video
+    <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', p: 0, m: 0 }}
+      position={"relative"} width="100%" height="90vh">
+          <video
                 autoPlay
                 loop
                 muted
+                width={"100%"} height={"80%"} 
               >
               <source
                 src="/background-video.mp4"
                 type="video/mp4"
               />
-            </video>
-          </CardCover>
-          <CardContent >
-            <Typography
-                variant="h5"
-                align="center"
-                color="primary"
-              mt={{ xs: 12, sm: 18 }}
-              >
-                Welcome To TECH-BLOG
-              </Typography>
-          </CardContent>
-      </Card>
+      </video>
+      <Typography
+        fontFamily={"Dancing Script,cursive"}
+        variant="h4"
+        fontWeight="bold"
+        textAlign={"center"}
+        width="100%"
+        sx={{
+          position: "absolute",
+          top: "0px",
+          color: "white",
+          background: "primary",
+        }}
+        mt={{ xs: 10, sm: 14 }}
+      > Welcome To TECH-BLOG 
+      </Typography>
+      <Box width="100%" display={"flex"} flexDirection="column">
+        <Typography
+          fontFamily={"quicksand"}
+          fontWeight="bold"
+          textAlign={"center"}
+          variant="h6"
+          padding={2}
+        >
+        STAY CURIOUS & CREATE YOU SPACE.
+        </Typography>
+        <Box margin="auto">
+          <Button
+            LinkComponent={Link}
+            to="/blog"
+            variant="contained"
+          sx={{ ml: 2, mr: 2 }}>
+            Start Reading
+          </Button>
+          </Box>
+        </Box>
       </Box>
   );
 }
 export default Home
+
