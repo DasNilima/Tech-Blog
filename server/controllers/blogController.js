@@ -58,18 +58,21 @@ const updateBlog = async (req, res) => {
 }
 //getAllBlogs
 const getAllBlogs = async (req, res) => {
+    let user = req.query.user
+    let category = req.query.category;
     let blogs;
     try {
-        blogs = await Blog.find().populate("user");
-    } catch (err) {
-        return console.log(err);
+        if (user)
+            blogs = await Blog.find({ user: user }).populate("user");
+        else if (category)
+            blogs = await Blog.find({ categories: category });
+        else
+            blogs = await Blog.find({});
+        res.status(200).json({ blogs })
+    } catch (error) {
+        res.status(500).json(error)
     }
-    if (!blogs) {
-        return res.status(404).json({ message: "No Blogs Found" });
-    }
-    return res.status(200).json({ blogs})
-
-    }
+}
 // getBlogById
 
 const getBlogById = async (req, res) => {

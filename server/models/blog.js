@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const blogSchema =  new mongoose.Schema({
+const blogSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -23,9 +23,10 @@ const blogSchema =  new mongoose.Schema({
         type: Array,
         required: false,
     },
-},{
-    timestamps: true,
-}
-);
+    createdDate: {
+        type: Date
+
+    }
+});
 
 module.exports = mongoose.model('Blog', blogSchema)
