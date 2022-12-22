@@ -19,7 +19,7 @@ import { authActions } from "../store";
 
 
 const auths = [  'Login', 'Signup']
-const pages = ['Blog', 'myBlogs', 'CreateBlog'];
+const pages = [ 'Home','Blog', 'myBlogs'];
 const settings = ['Logout'];
 
 function Header() { 

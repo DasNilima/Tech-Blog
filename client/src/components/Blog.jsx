@@ -1,92 +1,75 @@
-import React from "react";
-import {
-    Avatar,
-    Box,
-    Card,
-    CardContent,
-    CardHeader,
-    CardMedia,
-    IconButton,
-    Typography,
-} from "@mui/material";
-import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { useNavigate } from "react-router-dom";
+// import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Blog from "./Blogs.jsx";
+import Categories from './Categories';
+import { useEffect, useState } from 'react';
 
-const Blog = ({ title, content, imageURL, userName, isUser, id }) => {
-    const navigate = useNavigate();
-    const handleEdit = () => {
-        navigate(`/myBlogs/${id}`);
-    };
-    const deleteRequest = async () => {
-        const res = await axios
-        .delete(`/blog/${id}`)
-        .catch((err) => console.log(err));
-    const data = await res.data;
-    return data;
-    };
-    const handleDelete = () => {
-    deleteRequest()
-        .then(() => navigate("/"))
-        .then(() => navigate("/myBlogs"));
-    };
+import { Grid, Box } from '@mui/material';
+import { Link, useSearchParams } from 'react-router-dom';
+const Blogs = () => {
+    const [blogs, setBlogs] = useState();
+    const [searchParams] = useSearchParams();
+    const category = searchParams.get('category');
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await axios.get("/blog", category || '');
+            const data = await res.data;
+            return setBlogs(data.blogs);
+        }
+        fetchData();
+    }, [category]);
+        ;
+    //     useEffect(() => {
+    // sendRequest().then((data) => setBlogs(data.blogs));
+    // },[]);
+    // console.log(blogs);
     return (
-        <div>
-            {" "}
-            <Card
-            sx={{
-                maxWidth: 345,
-                margin: "auto",
-                mt: 2,
-                padding: 2,
-                boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.76)",
-                ":hover": {
-                boxShadow: "10px 10px 20px #ccc",
-                },
-                }}
-            >
-            {isUser && (
-                <Box display="flex" >
-                <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
-                    <ModeEditOutlineIcon color="warning" />
-                </IconButton>
-                <IconButton onClick={handleDelete}>
-                    <DeleteForeverIcon color="error" />
-                </IconButton>
+        // <>
+            
+        //     <Grid item lg={2} xs={12} sm={2}>
+        //             <Categories />
+        //         </Grid>
+        
+        //     {blogs?.length ?
+        //         blogs.map(blog => (
+        //             <Grid item xs={12} sm={10} lg={10}>
+        //                 <Blog
+        //                     id={blog._id}
+        //                     key={index}
+        //                     isUser={localStorage.getItem("userId") === blog.user._id}
+        //                     title={blog.title}
+        //                     content={blog.content}
+        //                     imageURL={blog.image}
+        //                     userName={blog.user.name}
+        //                     date={blog.createdAt}
+                    
+        //                 />
+        
+        //             </Grid>)
+        // </>
+        <>
+        <Grid container>
+            <Grid item lg={2} xs={12} sm={2}>
+                <Categories />
+            </Grid>
+        
+            {
+            blogs?.length ? blogs.map(blog => (
+                <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`details/${blog._id}`}>
+                <Grid container item xs={12} sm={10} lg={10}>
+                    <Blog blog={blog} />
+                    </Grid>
+                    </Link>
+                
+            )) : <Box style={{color: 'black', margin: '30px 80px', fontSize: 18}}>
+                    No data is available for selected category
                 </Box>
-            )}
-            <CardHeader
-                avatar={
-                <Avatar
-                    sx={{ bgcolor: "red" }}
-                    aria-label="recipe"
-                >
-                    {userName ? userName.charAt(0) : ""}
-                </Avatar>
                 }
-                    title={title}
-                    subheader = {new Date().toDateString()}
-            />
-            <CardMedia
-                component="img"
-                height="194"
-                image={imageURL}
-                alt="blog"
-            />
-            <CardContent>
-                <hr />
-                <Typography
-                variant="body2"
-                color="text.secondary"
-                >
-                <b>{userName}</b> {": "} 
-                {content}
-                </Typography>
-            </CardContent>
-        </Card>
-    </div>
+        </Grid>
+    </>
     );
 };
 
-export default Blog;
+export default Blogs;
+

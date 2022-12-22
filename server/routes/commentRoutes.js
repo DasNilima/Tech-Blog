@@ -11,3 +11,5 @@ const {
 router.post('/comment/new', [auth], newComment);
 router.get('/comments/:id', [auth], getComments);
 router.delete('/comment/delete/:id', [auth], deleteComment); 
+
+module.exports = router;

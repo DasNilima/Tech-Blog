@@ -12,6 +12,7 @@ const defineCurrentUser = require('./middleware/defineCurrentUser')
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true },
         () => { console.log('connected to mongo: ', process.env.MONGO_URI) }
 )
+
 // Express Settings
 app.use(cors());
 app.use(express.json());
@@ -22,6 +23,7 @@ app.use(defineCurrentUser)
 //routes
 app.use('/user', require('./routes/userRoutes'));
 app.use('/blog', require('./routes/blogRoutes'));
+app.use('/', require('./routes/fileRoutes'));
 
 
 

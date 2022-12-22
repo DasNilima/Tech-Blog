@@ -1,60 +1,85 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const Blog = require('../models/blog');
 const User = require('../models/user');
 
 
 //CreateBlog
 
-const createBlog = async (req, res) => {
-    const { title, content, image, user } = req.body;
+// const createBlog = async (req, res) => {
+//     const { title, content, image, user } = req.body;
     
-    let existingUser;
-    try {
-        existingUser = await User.findById(user);
-    } catch (err) {
-        return console.log(err);
-    }
-    if (!existingUser) {
-        return res.status(400).json({ message: "Unable TO FInd User By This ID" });
-    }
-    const blog = new Blog({
-        title,
-        content,
-        image,
-        user,
-    });
-    try {
-        const session = await mongoose.startSession();
-        session.startTransaction();
-        await blog.save({ session });
-        existingUser.blogs.push(blog);
-        await existingUser.save({ session });
-        await session.commitTransaction();
-    } catch (err) {
-        console.log(err);
-        return res.status(500).json({ message: err });
-    }
+//     let existingUser;
+//     try {
+//         existingUser = await User.findById(user);
+//     } catch (err) {
+//         return console.log(err);
+//     }
+//     if (!existingUser) {
+//         return res.status(400).json({ message: "Unable TO FInd User By This ID" });
+//     }
+//     const blog = new Blog({
+//         title,
+//         content,
+//         image,
+//         user,
+//     });
+//     try {
+//         const session = await mongoose.startSession();
+//         session.startTransaction();
+//         await blog.save({ session });
+//         existingUser.blogs.push(blog);
+//         await existingUser.save({ session });
+//         await session.commitTransaction();
+//     } catch (err) {
+//         console.log(err);
+//         return res.status(500).json({ message: err });
+//     }
 
-    return res.status(200).json({ blog });
-};
+//     return res.status(200).json({ blog });
+// };
+const createBlog = async (request, response) => {
+    try {
+        const blog = await new Blog(request.body);
+        blog.save();
 
+        response.status(200).json('Blog saved successfully');
+    } catch (error) {
+        response.status(500).json(error);
+    }
+}
 //UpdateBlog
-const updateBlog = async (req, res) => {
-    const { title, content } = req.body;
-    const blogId = req.params.id;
-    let blog;
+// const updateBlog = async (req, res) => {
+//     const { title, content } = req.body;
+//     const blogId = req.params.id;
+//     let blog;
+//     try {
+//         blog = await Blog.findByIdAndUpdate(blogId, {
+//             title,
+//             content,
+//         });
+//     } catch (err) {
+//         return console.log(err)
+//     }
+//     if (!blog) {
+//         return res.status(500).json({ message: "Unable to Update the Blog" })
+//     }
+//     return res.status(200).json({ blog });
+// }
+
+const updateBlog  = async (request, response) => {
     try {
-        blog = await Blog.findByIdAndUpdate(blogId, {
-            title,
-            content,
-        });
-    } catch (err) {
-        return console.log(err)
+        const blog = await Blog.findById(request.params.id);
+
+        if (!blog) {
+            response.status(404).json({ msg: 'Blog not found' })
+        }
+        
+        await Blog.findByIdAndUpdate( request.params.id, { $set: request.body })
+
+        response.status(200).json('blog updated successfully');
+    } catch (error) {
+        response.status(500).json(error);
     }
-    if (!blog) {
-        return res.status(500).json({ message: "Unable to Update the Blog" })
-    }
-    return res.status(200).json({ blog });
 }
 //getAllBlogs
 const getAllBlogs = async (req, res) => {

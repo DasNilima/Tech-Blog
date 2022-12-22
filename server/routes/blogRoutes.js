@@ -8,19 +8,21 @@ const {
     updateBlog,
     deleteBlog,
     getBlogById,
-    getByUserId
+    getByUserId,
 } = require('../controllers/blogController')
 
-router.get('/', [auth], getAllBlogs)
 
-router.post('/create', [auth], createBlog)
 
-router.put('/:id', [auth], updateBlog)
+router.get('/', [auth], getAllBlogs);
 
-router.delete('/:id', [auth], deleteBlog)
+router.post('/create', [auth], createBlog);
 
-router.get('/:id', [auth], getBlogById)
+router.put('/:id', [auth], updateBlog);
 
-router.get('/user/:id', [auth], getByUserId)
+router.delete('/:id', [auth], deleteBlog);
+
+router.get('/:id', [auth], getBlogById);
+
+router.get('/user/:id', [auth], getByUserId);
 
 module.exports = router;

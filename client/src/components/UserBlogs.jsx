@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Blog from "./Blog";
+import Blog from "./Blogs.jsx";
 
 const UserBlogs = () => {
   const [user, setUser] = useState();

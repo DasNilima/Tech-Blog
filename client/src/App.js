@@ -10,7 +10,7 @@ import Home from './components/Home';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Header from './components/Header';
-import Blogs from './components/Blogs';
+import Blog from './components/Blog';
 import UserBlogs from './components/UserBlogs';
 import BlogDetail from './components/BlogDetail';
 import CreateBlog from './components/CreateBlog';
@@ -34,12 +34,12 @@ function App() {
         </header>
     <main>
         <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/Home" element={<Home />} />
               <Route path="/Signup" element={<Signup />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/logout" element={<Home />}></Route>
-              <Route path="/blog" element={<Blogs />}></Route>
-              <Route path="CreateBlog" element={<CreateBlog />}></Route>
+              <Route path="/blog" element={<Blog />}></Route>
+              <Route path="/create" element={<CreateBlog />}></Route>
               <Route path="myBlogs" element={<UserBlogs />}></Route>
               <Route path="/myBlogs/:id" element={<BlogDetail />}></Route> 
         </Routes>
