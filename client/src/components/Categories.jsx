@@ -35,7 +35,7 @@ const Categories = () => {
                 <TableHead>
                     <TableRow>
                         <TableCell>
-                            <StyledLink to={"/blog"}>
+                            <StyledLink to={"/Home"}>
                                 All Categories
                             </StyledLink>
                         </TableCell>
@@ -46,7 +46,7 @@ const Categories = () => {
                         categories.map(category => (
                             <TableRow key={category.id}>
                                 <TableCell>
-                                    <StyledLink to={`/blog?category=${category.type}`}>
+                                    <StyledLink to={`/Home?category=${category.type}`}>
                                         {category.type}
                                     </StyledLink>
                                 </TableCell>

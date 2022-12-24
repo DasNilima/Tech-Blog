@@ -1,75 +1,57 @@
-// import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Blog from "./Blogs.jsx";
-import Categories from './Categories';
-import { useEffect, useState } from 'react';
 
-import { Grid, Box } from '@mui/material';
-import { Link, useSearchParams } from 'react-router-dom';
-const Blogs = () => {
-    const [blogs, setBlogs] = useState();
-    const [searchParams] = useSearchParams();
-    const category = searchParams.get('category');
+
+import { styled, Box, Typography } from '@mui/material';
+
+const Container = styled(Box)`
+    border: 1px solid #d3cede;
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 350px;
+    & > img, & > p {
+        padding: 0 5px 5px 5px;
+    }
+`;
+
+const Image = styled('img')({
+    width: '100%',
+    objectFit: 'cover',
+    borderRadius: '10px 10px 0 0',
+    height: 150
+});
+
+const Text = styled(Typography)`
+    color: #878787
+    font-size: 12px;
+`;
+
+const Heading = styled(Typography)`
+    font-size: 18px;
+    font-weight: 600
+`;
+
+const Details = styled(Typography)`
+    font-size: 14px;
+    word-break: break-word;
+`;
+
+const Blog = ({ blog }) => {
+    const url = blog.image ? blog.image : 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80';
     
-    useEffect(() => {
-        const fetchData = async () => {
-            const res = await axios.get("/blog", category || '');
-            const data = await res.data;
-            return setBlogs(data.blogs);
-        }
-        fetchData();
-    }, [category]);
-        ;
-    //     useEffect(() => {
-    // sendRequest().then((data) => setBlogs(data.blogs));
-    // },[]);
-    // console.log(blogs);
+    const addEllipsis = (str, limit) => {
+        return str.length > limit ? str.substring(0, limit) + '...' : str;
+    } 
+
     return (
-        // <>
-            
-        //     <Grid item lg={2} xs={12} sm={2}>
-        //             <Categories />
-        //         </Grid>
-        
-        //     {blogs?.length ?
-        //         blogs.map(blog => (
-        //             <Grid item xs={12} sm={10} lg={10}>
-        //                 <Blog
-        //                     id={blog._id}
-        //                     key={index}
-        //                     isUser={localStorage.getItem("userId") === blog.user._id}
-        //                     title={blog.title}
-        //                     content={blog.content}
-        //                     imageURL={blog.image}
-        //                     userName={blog.user.name}
-        //                     date={blog.createdAt}
-                    
-        //                 />
-        
-        //             </Grid>)
-        // </>
-        <>
-        <Grid container>
-            <Grid item lg={2} xs={12} sm={2}>
-                <Categories />
-            </Grid>
-        
-            {
-            blogs?.length ? blogs.map(blog => (
-                <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`details/${blog._id}`}>
-                <Grid container item xs={12} sm={10} lg={10}>
-                    <Blog blog={blog} />
-                    </Grid>
-                    </Link>
-                
-            )) : <Box style={{color: 'black', margin: '30px 80px', fontSize: 18}}>
-                    No data is available for selected category
-                </Box>
-                }
-        </Grid>
-    </>
-    );
-};
-
-export default Blogs;
-
+        <Container>
+            <Image src={url} alt="blog" />
+            <Text>{blog.categories}</Text>
+            <Heading>{addEllipsis(blog.title, 20)}</Heading>
+            <Text>Author: {blog.name}</Text>
+            <Details>{addEllipsis(blog.content, 100)}</Details>
+        </Container>
+    )
+}
+export default Blog;

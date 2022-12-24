@@ -5,48 +5,49 @@ const User = require('../models/user');
 
 //CreateBlog
 
-// const createBlog = async (req, res) => {
-//     const { title, content, image, user } = req.body;
+const createBlog = async (req, res) => {
+    const { title, content, image, user, category} = req.body;
     
-//     let existingUser;
-//     try {
-//         existingUser = await User.findById(user);
-//     } catch (err) {
-//         return console.log(err);
-//     }
-//     if (!existingUser) {
-//         return res.status(400).json({ message: "Unable TO FInd User By This ID" });
-//     }
-//     const blog = new Blog({
-//         title,
-//         content,
-//         image,
-//         user,
-//     });
-//     try {
-//         const session = await mongoose.startSession();
-//         session.startTransaction();
-//         await blog.save({ session });
-//         existingUser.blogs.push(blog);
-//         await existingUser.save({ session });
-//         await session.commitTransaction();
-//     } catch (err) {
-//         console.log(err);
-//         return res.status(500).json({ message: err });
-//     }
-
-//     return res.status(200).json({ blog });
-// };
-const createBlog = async (request, response) => {
+    let existingUser;
     try {
-        const blog = await new Blog(request.body);
-        blog.save();
-
-        response.status(200).json('Blog saved successfully');
-    } catch (error) {
-        response.status(500).json(error);
+        existingUser = await User.findById(user);
+    } catch (err) {
+        return console.log(err);
     }
-}
+    if (!existingUser) {
+        return res.status(400).json({ message: "Unable TO FInd User By This ID" });
+    }
+    const blog = new Blog({
+        title,
+        content,
+        image,
+        user,
+        category
+    });
+    try {
+        const session = await mongoose.startSession();
+        session.startTransaction();
+        await blog.save({ session });
+        existingUser.blogs.push(blog);
+        await existingUser.save({ session });
+        await session.commitTransaction();
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: err });
+    }
+
+    return res.status(200).json({ blog });
+};
+// const createBlog = async (request, response) => {
+//     try {
+//         const blog = await new Blog(request.body);
+//         blog.save();
+
+//         response.status(200).json('Blog saved successfully');
+//     } catch (error) {
+//         response.status(500).json(error);
+//     }
+// }
 //UpdateBlog
 // const updateBlog = async (req, res) => {
 //     const { title, content } = req.body;
