@@ -38,7 +38,7 @@ const LoginButton = styled(Button)`
 const Signup = () => {
     const history = useNavigate();
     const [credentials, setCredentials] = useState({
-        name: "",
+        username: "",
         email: "",
         password: "",
     });
@@ -51,7 +51,7 @@ const Signup = () => {
     };
     const sendRequest = async () => {
         const res = await axios.post('/user/signup', {
-            name: credentials.name,
+            username: credentials.username,
             email: credentials.email,
             password: credentials.password,
         })
@@ -73,11 +73,11 @@ const Signup = () => {
                         <Typography variant="h4" >SignUp</Typography>
                         <Wrapper>
                         <TextField
-                                name="name"
+                                name="username"
                                 onChange={handleChange}
-                                value={credentials.name}
+                                value={credentials.username}
                                 variant="filled"
-                                placeholder="Name"
+                                placeholder="username"
                                 margin="normal"
                             />
                             <TextField

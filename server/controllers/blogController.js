@@ -5,49 +5,17 @@ const User = require('../models/user');
 
 //CreateBlog
 
-const createBlog = async (req, res) => {
-    const { title, content, image, user, category} = req.body;
-    
-    let existingUser;
+const createBlog = async (request, response) => {
     try {
-        existingUser = await User.findById(user);
-    } catch (err) {
-        return console.log(err);
-    }
-    if (!existingUser) {
-        return res.status(400).json({ message: "Unable TO FInd User By This ID" });
-    }
-    const blog = new Blog({
-        title,
-        content,
-        image,
-        user,
-        category
-    });
-    try {
-        const session = await mongoose.startSession();
-        session.startTransaction();
-        await blog.save({ session });
-        existingUser.blogs.push(blog);
-        await existingUser.save({ session });
-        await session.commitTransaction();
-    } catch (err) {
-        console.log(err);
-        return res.status(500).json({ message: err });
-    }
+        const blog = new Blog(request.body);
+        await blog.save();
 
-    return res.status(200).json({ blog });
-};
-// const createBlog = async (request, response) => {
-//     try {
-//         const blog = await new Blog(request.body);
-//         blog.save();
+        response.status(200).json('Blog saved successfully');
+    } catch (error) {
+        response.status(500).json(error);
+    }
+}
 
-//         response.status(200).json('Blog saved successfully');
-//     } catch (error) {
-//         response.status(500).json(error);
-//     }
-// }
 //UpdateBlog
 // const updateBlog = async (req, res) => {
 //     const { title, content } = req.body;
@@ -84,14 +52,14 @@ const updateBlog  = async (request, response) => {
 }
 //getAllBlogs
 const getAllBlogs = async (req, res) => {
-    let user = req.query.user
+    let username = req.query.username
     let category = req.query.category;
     let blogs;
     try {
-        if (user)
-            blogs = await Blog.find({ user: user }).populate("user");
+        if (username)
+            blogs = await Blog.find({ username: username }).populate("user");
         else if (category)
-            blogs = await Blog.find({ categories: category });
+            blogs = await Blog.find({ categories: category});
         else
             blogs = await Blog.find({});
         res.status(200).json({ blogs })

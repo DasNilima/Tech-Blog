@@ -37,7 +37,7 @@ const Details = styled(Typography)`
     word-break: break-word;
 `;
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog}) => {
     const url = blog.image ? blog.image : 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80';
     
     const addEllipsis = (str, limit) => {
@@ -49,7 +49,7 @@ const Blog = ({ blog }) => {
             <Image src={url} alt="blog" />
             <Text>{blog.categories}</Text>
             <Heading>{addEllipsis(blog.title, 20)}</Heading>
-            <Text>Author: {blog.name}</Text>
+            <Text>Author: {blog.username}</Text>
             <Details>{addEllipsis(blog.content, 100)}</Details>
         </Container>
     )

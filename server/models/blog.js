@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 
-const blogSchema = new mongoose.Schema({
+const BlogSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-
     },
     content: {
         type: String,
@@ -16,7 +15,11 @@ const blogSchema = new mongoose.Schema({
     },
     user: {
         type: mongoose.Types.ObjectId,
-        ref: "User",
+        ref: "user",
+        required: true,
+    },
+    username: {
+        type: String,
         required: true,
     },
     categories: {
@@ -29,4 +32,4 @@ const blogSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Blog', blogSchema)
+module.exports = mongoose.model('blog', BlogSchema)

@@ -1,8 +1,9 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import {Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import { authActions } from "./store";
+import DataProvider from './context/DataProvider';
 
 
 //components
@@ -13,6 +14,7 @@ import Header from './components/Header';
 import UserBlogs from './components/UserBlogs';
 import BlogDetail from './components/BlogDetail';
 import CreateBlog from './components/CreateBlog';
+
 
 
 function App() {
@@ -31,7 +33,9 @@ function App() {
         <header>
           <Header/>
         </header>
-    <main>
+      <main>
+        <DataProvider>
+        {/* <BrowserRouter> */}
         <Routes>
               <Route path='/Home' element={<Home />} />
               <Route path="/Signup" element={<Signup />}></Route>
@@ -40,7 +44,9 @@ function App() {
               <Route path="/create" element={<CreateBlog />}></Route>
               <Route path="myBlogs" element={<UserBlogs />}></Route>
               <Route path="/myBlogs/:id" element={<BlogDetail />}></Route> 
-        </Routes>
+            </Routes>
+            {/* </BrowserRouter> */}
+        </DataProvider>
     </main>
       </React.Fragment>
   );

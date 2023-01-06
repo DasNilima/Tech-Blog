@@ -1,7 +1,5 @@
-
 import { Button, Table, TableHead, TableRow, TableCell, TableBody, styled } from '@mui/material';
 import { Link, useSearchParams } from 'react-router-dom';
-
 import { categories } from '../constants/data';
 
 const StyledTable = styled(Table)`

@@ -1,9 +1,10 @@
 import { Box, Button, TextField, Typography, styled } from "@mui/material";
 import axios from "axios";
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { authActions } from "../../store";
+import { DataContext } from "../../context/DataProvider"
 
 
 const Div = styled(Box)`
@@ -40,9 +41,10 @@ const LoginButton = styled(Button)`
 const Login = () => {
     const dispatch = useDispatch();
     const history = useNavigate();
+    const { setAccount } = useContext(DataContext);
 
     const [credentials, setCredentials] = useState({
-        email: "",
+        username: "",
         password: "",
     });
 
@@ -54,11 +56,12 @@ const Login = () => {
     };
     const sendRequest = async () => {
         const res = await axios.post("/user/login", {
-            email: credentials.email,
+            username: credentials.username,
             password: credentials.password,
         })
         .catch((err) => console.log(err));
         const data = await res.data;
+        setAccount({ email: data.email, username: data.username });
         return data;
     };
     const handleSubmit = (e) => {
@@ -78,12 +81,12 @@ const Login = () => {
                         <Typography variant="h4" >Login</Typography>
                         <Wrapper>
                             <TextField
-                                name="email"
+                                name="username"
                                 onChange={handleChange}
-                                type={"email"}
-                                value={credentials.email}
+                                type={"username"}
+                                value={credentials.username}
                                 variant="filled"
-                                placeholder="Email"
+                                placeholder="Username"
                                 margin="normal"
                             />
                             <TextField
