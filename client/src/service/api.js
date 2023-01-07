@@ -25,8 +25,6 @@ axiosInstance.interceptors.request.use(
         return Promise.reject(error);
     }
 );
-
-
 const API = {};
 
 for (const [key, value] of Object.entries(SERVICE_URLS)) {

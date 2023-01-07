@@ -1,3 +1,4 @@
+
 // API SERVICE URL
 // SAMPLE REQUEST
 // NEED SERVICE CALL: { url: "/", method: "POST/GET/PUT/DELETE" }
@@ -6,7 +7,7 @@ export const SERVICE_URLS = {
     userSignup: { url: '/signup', method: 'POST' },
     getAllBlog: { url: '/blog', method: 'GET', params: true },
     getRefreshToken: { url: '/token', method: 'POST' },
-    uploadFile: { url: 'file/upload', method: 'POST' },
+    uploadFile: { url: '/file/upload', method: 'POST' },
     createPost: { url: '/blog/create', method: 'POST' },
     deletePost: { url: 'delete', method: 'DELETE', query: true },
     getPostById: { url: 'post', method: 'GET', query: true },

@@ -13,8 +13,8 @@ const {
 
 
 router.get('/', getAllUser)
-router.post('/signup', signup)
-router.post('/login', login);
+router.post('/signup',[auth], signup)
+router.post('/login',[auth], login);
 // router.post('/logout', [auth], logout);
 
 

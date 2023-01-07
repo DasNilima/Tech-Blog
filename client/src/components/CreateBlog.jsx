@@ -4,6 +4,8 @@ import { AddCircle as Add } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { DataContext } from '../context/DataProvider';
 import { API } from '../service/api';
+import axios from 'axios';
+
 
 
 const Container = styled(Box)(({ theme }) => ({
@@ -67,7 +69,7 @@ const CreateBlog = () => {
         data.append("file", file);
 
         //Api call
-        const response = await API.uploadFile(data);
+        const response = await axios.post('/file/upload', data );
         blog.image = response.data;
       }
     }

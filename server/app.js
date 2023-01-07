@@ -24,7 +24,6 @@ app.use(defineCurrentUser)
 app.use('/user', require('./routes/userRoutes'));
 app.use('/blog', require('./routes/blogRoutes'));
 app.use('/', require('./routes/fileRoutes'));
-// app.use('/', require('./routes/categoryRoutes'));
 
 
 
