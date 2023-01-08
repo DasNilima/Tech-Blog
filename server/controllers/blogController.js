@@ -1,4 +1,3 @@
-// const mongoose = require("mongoose");
 const Blog = require('../models/blog');
 const User = require('../models/user');
 
@@ -69,18 +68,14 @@ const getAllBlogs = async (req, res) => {
 }
 // getBlogById
 
-const getBlogById = async (req, res) => {
-    const id = req.params.id;
-    let blog;
+const getBlogById = async (request, response) => {
     try {
-        blog = await Blog.findById(id);
-    } catch (err) {
-        return console.log(err);
+        const blog = await Blog.findById(request.params.id);
+
+        response.status(200).json({blog});
+    } catch (error) {
+        response.status(500).json(error)
     }
-    if (!blog) {
-        return res.status(404).json({ message: "No Blog Found" });
-    }
-    return res.status(200).json({ blog });
 }
 
 //deleteBlog
@@ -102,26 +97,11 @@ const deleteBlog = async (req, res) => {
     return res.status(200).json({ message: "Successfully Delete "})
 }
 
-const getByUserId = async (req, res) => {
-    const userId = req.params.id;
-    let userBlogs;
-    try {
-        userBlogs = await User.findById(userId).populate("blogs");
-    } catch (err) {
-        return console.log(err);
-    }
-    if (!userBlogs) {
-        return res.status(404).json({ message: "No Blog Found " });
-    }
-    return res.status(200).json({ user: userBlogs });
-}
-
 module.exports = {
     deleteBlog,
     updateBlog,
     createBlog,
     getAllBlogs,
     getBlogById,
-    getByUserId
 
 }

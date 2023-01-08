@@ -12,7 +12,7 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Header from './components/Header';
 import UserBlogs from './components/UserBlogs';
-import BlogDetail from './components/BlogDetail';
+import BlogDetail from './components/details/BlogDetail';
 import CreateBlog from './components/CreateBlog';
 
 
@@ -43,7 +43,7 @@ function App() {
               <Route path="/logout" element={<Login />}></Route>
               <Route path="/create" element={<CreateBlog />}></Route>
               <Route path="myBlogs" element={<UserBlogs />}></Route>
-              <Route path="/myBlogs/:id" element={<BlogDetail />}></Route> 
+              <Route path="/Home/details/:id" element={<BlogDetail />}></Route> 
             </Routes>
             {/* </BrowserRouter> */}
         </DataProvider>
