@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled, Box, TextareaAutosize, Button, InputBase, FormControl  } from '@mui/material';
 import { AddCircle as Add } from '@mui/icons-material';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { DataContext } from '../context/DataProvider';
-import { API } from '../service/api';
+import { useNavigate, useParams } from 'react-router-dom';
+import { API } from '../../service/api';
 import axios from 'axios';
-
 
 
 const Container = styled(Box)(({ theme }) => ({
@@ -53,42 +51,49 @@ const initialBlog = {
     createdDate: new Date()
 }
 
-const CreateBlog = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [blog, setBlog] = useState(initialBlog);
-  const [file, setFile] = useState('');
-  const { account } = useContext(DataContext);
-  const url = blog.image ? blog.image : 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
-  
-  useEffect(() => {
+const Update = () => {
+    const navigate = useNavigate();
+    const [blog, setBlog] = useState(initialBlog);
+    const [file, setFile] = useState('');
+    const [imageURL, setImageURL] = useState('');
+    const { id } = useParams();
+    
+    const url = blog.image ? blog.image : 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
+
+useEffect(() => {
+        const fetchData = async () => {
+            let response = await API.getBlogById(id);
+            if (response.isSuccess) {
+                setBlog(response.data.blog);
+            }
+        }
+        fetchData();
+    }, []);
+
+useEffect(() => {
     const getImage = async () => {
-      if (file) {
+    if (file) {
         const data = new FormData();
         data.append("name", file.name);
         data.append("file", file);
-
-        //Api call
-        const response = await axios.post('/file/upload', data );
+    //Api call
+    const response = await axios.post('/file/upload', data );
         blog.image = response.data;
-      }
+        setImageURL(response.data);  
     }
+}
     getImage();
-    blog.categories = location.search?.split('=')[1] || 'All';
-    blog.user = localStorage.getItem("userId");
-    blog.username = account.username;
-  }, [file])
-  const savePost = async () => {
-    await API.createPost(blog);
-    navigate('/home');
-  }
-  
-  const handleChange = (e) => {
-    setBlog({ ...blog, [e.target.name]: e.target.value });
+}, [file])
+
+const updateBlog = async () => {
+    await API.updateBlog(blog);
+    navigate(`/home/details/${id}`);
 }
 
-  
-    return (
+const handleChange = (e) => {
+    setBlog({ ...blog, [e.target.name]: e.target.value });
+}
+return (
         <Container>
             <Image src={url} alt="blog" />
             <StyledFormControl>
@@ -101,19 +106,19 @@ const CreateBlog = () => {
                     style={{ display: "none" }}
                     onChange={(e) => setFile(e.target.files[0])}
                 />
-                <InputTextField  onChange={(e) => handleChange(e)} name='title' placeholder="Title"  />
-                <Button onClick={() => savePost()}  variant="contained" color="primary">Publish</Button>
+            <InputTextField onChange={(e) => handleChange(e)} value={blog.title } name='title' placeholder="Title"  />
+                <Button onClick={() => updateBlog()}  variant="contained" color="primary">Update</Button>
             </StyledFormControl>
-
             <Textarea
                 minRows={5}
                 placeholder="write your blog..."
                 name='content'
                 onChange={(e) => handleChange(e)} 
+                value = {blog.content}
             />
         </Container>
     )
 }
 
-export default CreateBlog;
+export default Update;
 

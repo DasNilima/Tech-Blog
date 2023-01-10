@@ -50,9 +50,9 @@ const Author = styled(Box)(({ theme }) => ({
   },
 }));
 
-const content = styled(Typography)`
-    word-break: break-word;
-`
+// const content = styled(Typography)`
+//     word-break: break-word;
+// `
 const BlogDetail = () => {
   const url = 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
 
@@ -75,7 +75,7 @@ const BlogDetail = () => {
 }, [id]);
 
 const deleteBlog = async () => {  
-    await API.deletePost(blog._id);
+    await API.deleteBlog(blog._id);
     navigate('/home')
 }
 return (

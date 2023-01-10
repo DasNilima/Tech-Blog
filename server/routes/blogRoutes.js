@@ -4,22 +4,27 @@ const auth = require('../middleware/defineCurrentUser');
 
 const {
     getAllBlogs,
+    getBlogById,
+    getByUserId,
     createBlog,
     updateBlog,
     deleteBlog,
-    getBlogById,
 } = require('../controllers/blogController')
 
 
 
-router.get('/', [auth], getAllBlogs);
+router.get('/blogs', [auth], getAllBlogs);
+
+router.get('/blog/:id', [auth], getBlogById);
+
+router.get('/user/:id', [auth], getByUserId);
 
 router.post('/create', [auth], createBlog);
 
-router.put('/:id', [auth], updateBlog);
+router.put('/update/:id', [auth], updateBlog);
 
-router.delete('/:id', [auth], deleteBlog);
+router.delete('/delete/:id', [auth], deleteBlog);
 
-router.get('/:id', [auth], getBlogById);
+
 
 module.exports = router;

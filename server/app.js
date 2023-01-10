@@ -22,7 +22,7 @@ app.use(defineCurrentUser)
 
 //routes
 app.use('/user', require('./routes/userRoutes'));
-app.use('/blog', require('./routes/blogRoutes'));
+app.use('/', require('./routes/blogRoutes'));
 app.use('/', require('./routes/fileRoutes'));
 
 

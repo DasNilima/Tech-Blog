@@ -21,10 +21,11 @@ const Blogs = () => {
     return (
         <>
             {
-                blogs?.length ? blogs.map(blog => (
+                blogs?.length ? blogs.map((blog,index) => (
             <Grid item lg={3} sm={4} xs={12}>
                 <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`details/${blog._id}`}>
-                            <Blog blog={blog}/>
+                            <Blog blog={blog}
+                            key={index}/>
                 </Link>
             </Grid> 
                 

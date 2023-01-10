@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-    blogs: [{  type: mongoose.Types.ObjectId, ref: "blog"}],
+    blogs: [{ type: mongoose.Types.ObjectId, ref: "blog", required: true }],
 }
 );
 

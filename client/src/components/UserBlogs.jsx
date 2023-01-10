@@ -1,39 +1,40 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Blog from "./Blogs.jsx";
+import { API } from '../service/api';
+import { Grid, Box } from '@mui/material';
+import { Link } from 'react-router-dom';
+import Blog from "./Blog";
 
 const UserBlogs = () => {
   const [user, setUser] = useState();
   const id = localStorage.getItem("userId");
-  const sendRequest = async () => {
-    const res = await axios
-      .get(`/blog/user/${id}`)
-      .catch((err) => console.log(err));
-    const data = await res.data;
-    return data;
-  };
+
   useEffect(() => {
-    sendRequest().then((data) => setUser(data.user));
-  });
-  // console.log(user);
-  return (
-    <div>
-      {" "}
-      {user &&
-        user.blogs &&
-        user.blogs.map((blog, index) => (
-          <Blog
-            id={blog._id}
-            key={index}
-            isUser={true}
-            title={blog.title}
-            content={blog.content}
-            imageURL={blog.image}
-            userName={user.name}
-            date ={blog.createdAt}
-          />
-        ))}
-    </div>
+    const fetchData = async () => {
+        let response = await API.getByUserId(id);
+        // if (response.isSuccess) {
+        //     setUser(response.data.blog);
+        // }
+        const data = await response.data;
+        return setUser(data.user);
+    }
+    fetchData();
+  }, []);
+  
+return (
+    <>
+      { user &&
+              user.blogs?.length ? user.blogs.map((blog,index) => (
+                <Grid item lg={3} sm={4} xs={12}>
+                  <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`details/${blog._id}`}>
+                              <Blog blog={blog}
+                              key={index}/>
+                  </Link>
+          </Grid>
+              )) : <Box style={{color: 'black', margin: '30px 80px', fontSize: 18}}>
+                      No data is available for selected category
+                  </Box>
+        }
+    </> 
   );
 };
 
