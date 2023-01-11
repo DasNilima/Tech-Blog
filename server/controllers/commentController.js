@@ -1,33 +1,33 @@
 const Comment = require('../models/comment');
 
-const newComment = async (req, res) => {
+const newComment = async (request, response) => {
     try {
-        const comment = await new Comment(req.body);
+        const comment = await new Comment(request.body);
         comment.save();
 
-        res.status(200).json('Comment saved successfully');
+        response.status(200).json('Comment saved successfully');
     } catch (error) {
-        res.status(500).json(error);
+        response.status(500).json(error);
     }
 }
 
-const getComments = async (req, res) => {
+const getComments = async (request, response) => {
     try {
-        const comments = await Comment.find({ blogId: req.params.id });
+        const comments = await Comment.find({ blogId: request.params.id });
         
-        res.status(200).json(comments);
+        response.status(200).json(comments);
     } catch (error) {
         response.status(500).json(error)
     }
 }
-const deleteComment = async (req, res) => {
+const deleteComment = async (request, response) => {
     try {
-        const comment = await Comment.findById(req.params.id);
+        const comment = await Comment.findById(request.params.id);
         await comment.delete()
 
-        res.status(200).json('comment deleted successfully');
+        response.status(200).json('comment deleted successfully');
     } catch (error) {
-        res.status(500).json(error)
+        response.status(500).json(error)
     }
 }
 

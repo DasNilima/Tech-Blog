@@ -4,7 +4,7 @@ import { Delete, Edit } from '@mui/icons-material';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { API } from '../../service/api';
 import { DataContext } from '../../context/DataProvider';
-
+import Comments from './comments/Comments';
 
 const Container = styled(Box)(({ theme }) => ({
   margin: '50px 100px',
@@ -62,7 +62,7 @@ const BlogDetail = () => {
   const { id } = useParams();
 
 
-  useEffect(() => {
+useEffect(() => {
     const fetchData = async () => {
         let response = await API.getBlogById(id);
         if (response.isSuccess) {
@@ -81,25 +81,24 @@ const deleteBlog = async () => {
 return (
     <Container>
         <Image src={blog.image || url} alt="blog" />
-        <Box style={{ float: 'right' }}>
-          { account.username === blog.username }
-            <>
-              <Link to={`/update/${blog._id}`}><EditIcon color="primary" /></Link>
-              <DeleteIcon onClick={() => deleteBlog()} color="error" />
-            </>
-        </Box>
-        <Heading>{blog.title}</Heading>
+          <Box style={{ float: 'right' }}>
+              { account.username === blog.username }
+                <>
+                  <Link to={`/update/${blog._id}`}><EditIcon color="primary" /></Link>
+                  <DeleteIcon onClick={() => deleteBlog()} color="error" />
+                </>
+          </Box>
+          <Heading>{blog.title}</Heading>
         <Author>
             <Link to={`/?username=${blog.username}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <Typography>Author: <span style={{fontWeight: 600}}>{blog.username}</span></Typography>
             </Link>
             <Typography style={{marginLeft: 'auto'}}>{new Date(blog.createdDate).toDateString()}</Typography>
         </Author>
-        <Typography>{blog.content}</Typography>
-        {/* <Comments blog={blog} /> */}
+      <Typography>{blog.content}</Typography>
+      <Comments blog={blog} />
     </Container>
 )
 }
-
 
 export default BlogDetail;

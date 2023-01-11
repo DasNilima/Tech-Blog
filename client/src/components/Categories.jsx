@@ -3,7 +3,8 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { categories } from '../constants/data';
 
 const StyledTable = styled(Table)`
-    border: 1px solid rgba(224, 224, 224, 1);
+    border: 2px solid rgba(50, 115, 220, 0.3);
+    border-radius: 10px;
 `;
     
 const StyledButton = styled(Button)`
@@ -27,8 +28,7 @@ const Categories = () => {
         <>
             <Link to={`/create?category=${category || ''}`} style={{ textDecoration: 'none' }}>
                 <StyledButton variant="contained">Create Blog</StyledButton>
-            </Link>
-            
+            </Link>            
             <StyledTable>
                 <TableHead>
                     <TableRow>
