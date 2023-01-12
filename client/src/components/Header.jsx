@@ -18,8 +18,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store";
 
 
-const auths = [  'Login', 'Signup']
-const pages = [ 'Home', 'myBlogs'];
+// const auths = [  'Login', 'Signup']
+const pages = [ 'Home', 'myBlogs','About','Contact'];
 const settings = ['Logout'];
 
 function Header() { 
@@ -45,9 +45,9 @@ function Header() {
     };
 
 return (
-    <AppBar position="static"
+    <AppBar
         sx={{ background: "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)",}}>
-        <Container maxWidth="xl">
+        <Container>
             <Toolbar>
                     <Typography
                             variant="h6"
@@ -128,7 +128,7 @@ return (
                                     ))
                             )}
                     </Box>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'none' } }}>
+                    {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'none' } }}>
                                 { isLoggedIn && (
                                         auths.map((auth) => (
                                             <Button key={auth} onClick={handleCloseNavMenu} variant="contained" sx={{ margin: 1, borderRadius: 10 }}  >
@@ -138,8 +138,8 @@ return (
                                             </Button>
                                         )
                                 ))}
-                    </Box>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex', justifyContent: 'flex-end' } }}>
+                    </Box> */}
+                    {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex', justifyContent: 'flex-end' } }}>
                                 {!isLoggedIn && (
                                         auths.map((auth) => (
                                             <Button key={auth} onClick={handleOpenNavMenu} variant="contained" color="warning" sx={{ margin: 0.5, borderRadius: 6 }}  >
@@ -149,7 +149,7 @@ return (
                                             </Button>
                                         )
                                     ))}
-                    </Box>
+                    </Box> */}
                     <Box sx={{ flexGrow: 0 }}>
                             {isLoggedIn && (
                                     <Tooltip title="Open settings">

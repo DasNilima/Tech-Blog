@@ -2,16 +2,17 @@ import { Box, Button, TextField, Typography, styled } from "@mui/material";
 import axios from "axios";
 import React, { useState, useContext } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { authActions } from "../../store";
 import { DataContext } from "../../context/DataProvider"
 
 
-const Div = styled(Box)`
+const Component = styled(Box)`
     width: 400px;
     margin: auto;
     box-shadow: 5px 2px 5px 2px rgb(0 0 0/ 0.6);
 `;
+
 const Image = styled('img')({
     width: 100,
     display: 'flex',
@@ -34,10 +35,21 @@ const LoginButton = styled(Button)`
     background: #FB641B;
     color: #fff;
     height: 48px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+`;
+const SignupButton = styled(Button)`
+    text-transform: none;
+    background: #FB641B;
+    color: #fff;
+    height: 48px;
     border-radius: 5px;
 `;
 
+const Text = styled(Typography)`
+    color: #878787;
+    font-size: 12px;
+`
 const Login = () => {
     const dispatch = useDispatch();
     const history = useNavigate();
@@ -73,13 +85,14 @@ const Login = () => {
             .then(() => dispatch(authActions.login()))
             .then(() => history("/home"));
     };
-        return (
-            <Div>
-                <form onSubmit={handleSubmit}>
-                    <Box style={{ marginTop: 30, textAlign: 'center' }}>
+
+return (
+    <Component>
+            <form onSubmit={handleSubmit}>
+                <Box style={{ marginTop: 30, textAlign: 'center' }}>
                         <Image src="/logo-img.png" alt="blog" />
-                        <Typography variant="h4" >Login</Typography>
-                        <Wrapper>
+                    <Typography variant="h4" >Login</Typography>
+                    <Wrapper>
                             <TextField
                                 name="username"
                                 onChange={handleChange}
@@ -97,16 +110,17 @@ const Login = () => {
                                 variant="filled"
                                 placeholder="Password"
                                 margin="normal"
-                                />
-                        </Wrapper>
-                        <LoginButton variant="contained" type="submit">
-                            Login
-                        </LoginButton>
-                        </Box>
-                </form>
-            </Div>
-        )
-    }
-
+                            />
+                            <LoginButton variant="contained" type="submit">Login</LoginButton>
+                                <Text style={{ textAlign: 'center', margin: '5px' }}>OR</Text>
+                            <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`/Signup`}>
+                            <SignupButton variant="contained">CREATE AN ACCOUNT</SignupButton>
+                            </Link>
+                    </Wrapper>
+                </Box>
+            </form>
+    </Component>
+    )
+}
 
 export default Login

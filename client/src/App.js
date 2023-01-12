@@ -15,8 +15,8 @@ import UserBlogs from './components/UserBlogs';
 import BlogDetail from './components/details/BlogDetail';
 import CreateBlog from './components/create/CreateBlog';
 import Update from './components/create/Update';
-
-
+import About from './components/About';
+import Contact from './components/Contact';
 
 function App() {
   const dispath = useDispatch();
@@ -36,11 +36,12 @@ function App() {
         </header>
       <main>
         <DataProvider>
-        {/* <BrowserRouter> */}
         <Routes>
               <Route path='/Home' element={<Home />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/contact' element={<Contact />} />
               <Route path="/Signup" element={<Signup />}></Route>
-              <Route path="/login" element={<Login />}></Route>
+              <Route path="/" element={<Login />}></Route>
               <Route path="/logout" element={<Login />}></Route>
               <Route path="/create" element={<CreateBlog />}></Route>
               <Route path="myBlogs" element={<UserBlogs />}></Route>
@@ -48,7 +49,6 @@ function App() {
               <Route path="/Home/details/:id" element={<BlogDetail />}></Route>
               <Route path="/update/:id" element={<Update />}></Route>
             </Routes>
-            {/* </BrowserRouter> */}
         </DataProvider>
     </main>
       </React.Fragment>

@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography, styled } from "@mui/material";
 import axios from "axios";
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 
 const Div = styled(Box)`
@@ -31,9 +31,21 @@ const LoginButton = styled(Button)`
     background: #FB641B;
     color: #fff;
     height: 48px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+`;
+const SignupButton = styled(Button)`
+    text-tranform: none;
+    background: #FB641B;
+    color: #fff;
+    height: 48px;
     margin-bottom: 20px;
     border-radius: 5px;
 `;
+const Text = styled(Typography)`
+    color: #878787;
+    font-size: 12px;
+`
 
 const Signup = () => {
     const history = useNavigate();
@@ -98,10 +110,12 @@ const Signup = () => {
                                 placeholder="Password"
                                 margin="normal"
                                 />
-                        </Wrapper>
-                        <LoginButton variant="contained" type="submit">
-                            Sign Up
-                        </LoginButton>
+                            <SignupButton variant="contained" type="submit">Sign Up</SignupButton>
+                            <Text style={{ textAlign: 'center',margin: '5px'  }}>OR</Text>
+                            <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`/`}>
+                                <LoginButton variant="contained">Already have an account</LoginButton>
+                            </Link>
+                            </Wrapper>
                         </Box>
                 </form>
             </Div>
