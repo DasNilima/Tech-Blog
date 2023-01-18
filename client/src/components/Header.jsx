@@ -20,7 +20,7 @@ import { authActions } from "../store";
 
 // const auths = [  'Login', 'Signup']
 const pages = [ 'Home', 'myBlogs','About','Contact'];
-const settings = ['Logout'];
+const settings = ['Profile','Logout'];
 
 function Header() { 
     const dispatch = useDispatch();
@@ -150,7 +150,7 @@ return (
                                         )
                                     ))}
                     </Box> */}
-                    <Box sx={{ flexGrow: 0 }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex', justifyContent: 'flex-end' } }}>
                             {isLoggedIn && (
                                     <Tooltip title="Open settings">
                                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

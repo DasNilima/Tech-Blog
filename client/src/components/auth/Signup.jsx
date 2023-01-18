@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography, styled } from "@mui/material";
-import axios from "axios";
 import React, { useState } from 'react';
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { API } from '../../service/api';
 
 
 const Div = styled(Box)`
@@ -28,11 +28,12 @@ const Wrapper = styled(Box)`
 `;
 const LoginButton = styled(Button)`
     text-tranform: none;
-    background: #FB641B;
-    color: #fff;
+    background: #fff;
+    color: #2874f0;
     height: 48px;
     margin-bottom: 10px;
     border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
 `;
 const SignupButton = styled(Button)`
     text-tranform: none;
@@ -62,7 +63,7 @@ const Signup = () => {
         }));
     };
     const sendRequest = async () => {
-        const res = await axios.post('/user/signup', {
+        const res = await API.userSignup ({
             username: credentials.username,
             email: credentials.email,
             password: credentials.password,
@@ -75,7 +76,7 @@ const Signup = () => {
         e.preventDefault();
         // send http request
         sendRequest()
-            .then(() => history("/login"));
+            .then(() => history("/"));
     };
         return (
             <Div>

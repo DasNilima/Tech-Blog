@@ -3,7 +3,7 @@ import { styled, Box, Typography } from '@mui/material';
 const Image = styled(Box)`
     width: 100%;
     background: url(https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64) center/55% repeat-x #e8eef1;
-    height: 25vh;
+    height: 35vh;
     display: flex;
     flex-direction: column;
     align-items: center;

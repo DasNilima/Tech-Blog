@@ -1,10 +1,10 @@
 import { Box, Button, TextField, Typography, styled } from "@mui/material";
-import axios from "axios";
 import React, { useState, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate,Link } from "react-router-dom";
 import { authActions } from "../../store";
-import { DataContext } from "../../context/DataProvider"
+import { DataContext } from "../../context/DataProvider";
+import { API } from '../../service/api';
 
 
 const Component = styled(Box)`
@@ -40,10 +40,11 @@ const LoginButton = styled(Button)`
 `;
 const SignupButton = styled(Button)`
     text-transform: none;
-    background: #FB641B;
-    color: #fff;
+    background: #fff;
+    color: #2874f0;
     height: 48px;
     border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
 `;
 
 const Text = styled(Typography)`
@@ -67,7 +68,7 @@ const Login = () => {
         }));
     };
     const sendRequest = async () => {
-        const res = await axios.post("/user/login", {
+        const res = await API.userLogin({
             username: credentials.username,
             password: credentials.password,
         })
@@ -99,7 +100,7 @@ return (
                                 type={"username"}
                                 value={credentials.username}
                                 variant="filled"
-                                placeholder="Username"
+                                label='Enter Username' 
                                 margin="normal"
                             />
                             <TextField
@@ -108,13 +109,13 @@ return (
                                 type="password"
                                 value={credentials.password}
                                 variant="filled"
-                                placeholder="Password"
+                                label='Enter Password' 
                                 margin="normal"
                             />
                             <LoginButton variant="contained" type="submit">Login</LoginButton>
                                 <Text style={{ textAlign: 'center', margin: '5px' }}>OR</Text>
                             <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`/Signup`}>
-                            <SignupButton variant="contained">CREATE AN ACCOUNT</SignupButton>
+                            <SignupButton >Create an Account</SignupButton>
                             </Link>
                     </Wrapper>
                 </Box>

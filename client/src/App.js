@@ -1,5 +1,6 @@
 import './App.css';
-import {Route, Routes } from 'react-router-dom';
+import { Box } from '@mui/material';
+import {BrowserRouter,Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import { authActions } from "./store";
@@ -10,13 +11,13 @@ import DataProvider from './context/DataProvider';
 import Home from './components/Home';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
-import Header from './components/Header';
 import UserBlogs from './components/UserBlogs';
 import BlogDetail from './components/details/BlogDetail';
 import CreateBlog from './components/create/CreateBlog';
 import Update from './components/create/Update';
 import About from './components/About';
 import Contact from './components/Contact';
+import Profile from './components/Profile';
 
 function App() {
   const dispath = useDispatch();
@@ -29,13 +30,9 @@ function App() {
     }
   }, [dispath]);
   return (
-
-    <React.Fragment>
-        <header>
-          <Header/>
-        </header>
-      <main>
-        <DataProvider>
+    <DataProvider>
+      <BrowserRouter>
+        <Box style={{ marginTop: 64 }}>
         <Routes>
               <Route path='/Home' element={<Home />} />
               <Route path='/about' element={<About />} />
@@ -44,14 +41,15 @@ function App() {
               <Route path="/" element={<Login />}></Route>
               <Route path="/logout" element={<Login />}></Route>
               <Route path="/create" element={<CreateBlog />}></Route>
+              <Route path="/Profile" element={<Profile />}></Route>
               <Route path="myBlogs" element={<UserBlogs />}></Route>
               <Route path="/myBlogs/details/:id" element={<BlogDetail />}></Route> 
               <Route path="/Home/details/:id" element={<BlogDetail />}></Route>
               <Route path="/update/:id" element={<Update />}></Route>
-            </Routes>
-        </DataProvider>
-    </main>
-      </React.Fragment>
+          </Routes>
+          </Box>
+      </BrowserRouter>
+    </DataProvider>
   );
 }
 
