@@ -2,6 +2,8 @@ import { Box, Button, TextField, Typography, styled } from "@mui/material";
 import React, { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { API } from '../../service/api';
+import { authActions } from "../../store";
+import { useDispatch } from 'react-redux';
 
 
 const Div = styled(Box)`
@@ -50,6 +52,7 @@ const Text = styled(Typography)`
 
 const Signup = () => {
     const history = useNavigate();
+    const dispatch = useDispatch();
     const [credentials, setCredentials] = useState({
         username: "",
         email: "",
@@ -76,7 +79,9 @@ const Signup = () => {
         e.preventDefault();
         // send http request
         sendRequest()
-            .then(() => history("/"));
+        .then((data) => localStorage.setItem("userId", data.user._id))
+        .then(() => dispatch(authActions.login()))
+        .then(() => history("/login"));
     };
         return (
             <Div>

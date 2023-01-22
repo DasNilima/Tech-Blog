@@ -36,6 +36,6 @@ export const SERVICE_URLS = {
     newComment: { url: '/comment/new', method: 'POST' },
     getAllComments: { url: 'comments', method: 'GET', query: true },
     deleteComment: { url: 'comment/delete', method: 'DELETE', query: true },
-    updateBlog: { url: 'update', method: 'PUT', query: true }
-
+    updateBlog: { url: 'update', method: 'PUT', query: true },
+    updateUser:{ url: '/update', method: 'PUT', query: true },
 }

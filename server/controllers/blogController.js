@@ -17,7 +17,16 @@ const createBlog = async (request, response) => {
         response.status(500).json(error);
     }
 }
+// const createBlog = async (request, response) => {
+//     try {
+//         const blog =  new Blog(request.body);
+//         await blog.save();
 
+//         response.status(200).json('Blog saved successfully');
+//     } catch (error) {
+//         response.status(500).json(error);
+//     }
+// }
 
 
 //getAllBlogs
@@ -101,5 +110,4 @@ module.exports = {
     getAllBlogs,
     getBlogById,
     getByUserId,
-
 }

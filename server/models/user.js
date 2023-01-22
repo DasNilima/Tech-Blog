@@ -4,7 +4,6 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         requried: true,
-        unique: true,
     },
     email: {
         type: String,
@@ -16,7 +15,7 @@ const userSchema = new mongoose.Schema({
     },
     profilePic: {
         type: String,
-        default: "",
+        default: "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
     },
     blogs: [{ type: mongoose.Types.ObjectId, ref: "blog", required: true }],
 }

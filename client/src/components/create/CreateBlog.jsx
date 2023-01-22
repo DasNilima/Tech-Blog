@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { styled, Box, TextareaAutosize, Button, InputBase, FormControl  } from '@mui/material';
 import { AddCircle as Add } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { DataContext } from '../../context/DataProvider';
+import { DataContext } from '../../context/DataProvider'
 import { API } from '../../service/api';
 import axios from 'axios';
 
@@ -74,13 +74,14 @@ const getImage = async () => {
 }
     getImage();
     blog.categories = location.search?.split('=')[1] || 'All';
-    blog.user = localStorage.getItem("userId");
     blog.username = account.username;
-}, [file])
-const saveBlog = async () => {
-await API.createBlog(blog);
-navigate('/home');
-}
+    blog.user = localStorage.getItem("userId");
+})
+    
+    const saveBlog = async () => {
+    await API.createBlog(blog);
+    navigate('/home');
+    }
 
 const handleChange = (e) => {
     setBlog({ ...blog, [e.target.name]: e.target.value });
