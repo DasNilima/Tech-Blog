@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { API } from '../../service/api';
 import { DataContext } from '../../context/DataProvider';
 import Comments from './comments/Comments';
+import Header from '../Header';
 
 const Container = styled(Box)(({ theme }) => ({
   margin: '50px 100px',
@@ -78,7 +79,9 @@ const deleteBlog = async () => {
     await API.deleteBlog(blog._id);
     navigate('/home')
 }
-return (
+  return (
+    <>
+      <Header/>
     <Container>
         <Image src={blog.image || url} alt="blog" />
           <Box style={{ float: 'right' }}>
@@ -97,7 +100,8 @@ return (
         </Author>
       <Typography>{blog.content}</Typography>
       <Comments blog={blog} />
-    </Container>
+      </Container>
+      </>
 )
 }
 

@@ -75,7 +75,8 @@ const Login = () => {
         .catch((err) => console.log(err));
         const data = await res.data;
         sessionStorage.setItem('token', `Bearer ${res.data.token}`);
-        setAccount({ email: data.email, username: data.username });
+        // localStorage.setItem("user", JSON.stringify(res.data));
+        setAccount({ email: res.data.email, username: res.data.username });
         return data;
     };
     const handleSubmit = (e) => {

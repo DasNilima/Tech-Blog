@@ -3,19 +3,19 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        requried: true,
+        required: true
     },
     email: {
         type: String,
-        requried: true,
+        required: true,
     },
     password: {
         type: String,
         required: true,
     },
-    profilePic: {
+    photoURL: {
         type: String,
-        default: "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+        default: ''
     },
     blogs: [{ type: mongoose.Types.ObjectId, ref: "blog", required: true }],
 }

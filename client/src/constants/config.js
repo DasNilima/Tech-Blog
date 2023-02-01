@@ -27,7 +27,7 @@ export const API_NOTIFICATION_MESSAGES = {
 export const SERVICE_URLS = {
     userLogin: { url: '/login', method: 'POST' },
     userSignup: { url: '/signup', method: 'POST' },
-    getAllBlog: { url: '/blogs', method: 'GET', params: true },
+    getAllBlog: { url: '/blog', method: 'GET', params: true },
     uploadFile: { url: '/file/upload', method: 'POST' },
     createBlog: { url: 'create', method: 'POST' },
     deleteBlog: { url: 'delete', method: 'DELETE', query: true },
@@ -37,5 +37,6 @@ export const SERVICE_URLS = {
     getAllComments: { url: 'comments', method: 'GET', query: true },
     deleteComment: { url: 'comment/delete', method: 'DELETE', query: true },
     updateBlog: { url: 'update', method: 'PUT', query: true },
-    updateUser:{ url: '/update', method: 'PUT', query: true },
+    // getProfile: { url: 'profile', method: 'GET',  params: true },
+    // updateUser:{ url: 'update', method: 'PUT', query: true },
 }

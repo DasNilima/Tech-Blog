@@ -86,7 +86,8 @@ const getImage = async () => {
 const handleChange = (e) => {
     setBlog({ ...blog, [e.target.name]: e.target.value });
 }
-return (
+    
+    return (   
         <Container>
             <Image src={url} alt="blog" />
             <StyledFormControl>

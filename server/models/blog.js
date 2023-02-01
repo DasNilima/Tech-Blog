@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+// const { Schema } = mongoose;
 
 const BlogSchema = new mongoose.Schema({
     title: {
@@ -14,7 +15,7 @@ const BlogSchema = new mongoose.Schema({
         required: false
     },
     user: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Types.ObjectId, 
         ref: "user",
         required: true,
     },

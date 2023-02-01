@@ -1,5 +1,6 @@
 import { Box, styled, Typography, Link } from '@mui/material';
-import {  LinkedIn, Email } from '@mui/icons-material';
+import { LinkedIn, Email } from '@mui/icons-material';
+import Header from './Header';
 
 const Banner = styled(Box)`
     background-image: url(http://mrtaba.ir/image/bg2.jpg);
@@ -24,6 +25,7 @@ const Text = styled(Typography)`
 const Contact = () => {
     return (
         <Box>
+            <Header />
             <Banner />
             <Wrapper>
                 <Typography variant="h3">Getting in touch is easy!</Typography>    

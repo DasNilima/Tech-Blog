@@ -42,6 +42,7 @@ function App() {
               <Route path="/logout" element={<Login />}></Route>
               <Route path="/create" element={<CreateBlog />}></Route>
               <Route path="/Profile" element={<Profile />}></Route>
+              {/* <Route path="/Profile/:id" element={<Profile />}></Route> */}
               <Route path="myBlogs" element={<UserBlogs />}></Route>
               <Route path="/myBlogs/details/:id" element={<BlogDetail />}></Route> 
               <Route path="/Home/details/:id" element={<BlogDetail />}></Route>

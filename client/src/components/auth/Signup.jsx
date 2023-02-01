@@ -81,7 +81,7 @@ const Signup = () => {
         sendRequest()
         .then((data) => localStorage.setItem("userId", data.user._id))
         .then(() => dispatch(authActions.login()))
-        .then(() => history("/login"));
+        .then(() => history("/"));
     };
         return (
             <Div>

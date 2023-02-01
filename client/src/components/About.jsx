@@ -1,5 +1,6 @@
 import { Box, styled, Typography, Link } from '@mui/material';
 import { GitHub, LinkedIn, Email } from '@mui/icons-material';
+import Header from './Header';
 
 const Banner = styled(Box)`
     background-image: url(https://www.wallpapertip.com/wmimgs/160-1606634_macbook-pro.jpg);
@@ -23,6 +24,7 @@ const Text = styled(Typography)`
 const About = () => {
     return (
         <Box>
+            <Header/>
             <Banner />
             <Wrapper>
                 <Typography variant="h3">Tech-Blog</Typography>

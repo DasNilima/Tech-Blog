@@ -13,17 +13,17 @@ const {
 
 
 
-router.get('/blogs', [auth], getAllBlogs);
+router.get('/blog',[auth], getAllBlogs);
 
-router.get('/blog/:id', [auth], getBlogById);
+router.get('/blog/:id',[auth], getBlogById);
 
-router.get('/user/:id', [auth], getByUserId);
+router.get('/user/:id',[auth], getByUserId);
 
-router.post('/create', [auth], createBlog);
+router.post('/create',[auth], createBlog);
 
-router.put('/update/:id', [auth], updateBlog);
+router.put('/update/:id',[auth], updateBlog);
 
-router.delete('/delete/:id', [auth], deleteBlog);
+router.delete('/delete/:id',[auth], deleteBlog);
 
 
 

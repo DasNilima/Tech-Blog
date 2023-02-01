@@ -1,7 +1,7 @@
 //DEPENDENCIES
 require('dotenv').config()
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require("cors");
 const app = express();
@@ -22,7 +22,8 @@ app.use(defineCurrentUser)
 
 
 //routes
-app.use('/', require('./routes/userRoutes'));
+app.use('/', require('./routes/authRoutes'));
+// app.use('/', require('./routes/userRoutes'));
 app.use('/', require('./routes/blogRoutes'));
 app.use('/', require('./routes/fileRoutes'));
 app.use('/', require('./routes/commentRoutes'));

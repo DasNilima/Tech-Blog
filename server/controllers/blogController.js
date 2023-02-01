@@ -1,32 +1,31 @@
 const Blog = require('../models/blog');
 const User = require('../models/user');
 
-
 //CreateBlog
 
-const createBlog = async (request, response) => {
-    const { user } = request.body;
-    try {
-        const existingUser = await User.findById(user);
-        const blog = new Blog(request.body);
-        await blog.save();
-        existingUser.blogs.push(blog);
-        await existingUser.save();
-        response.status(200).json('Blog saved successfully');
-    } catch (error) {
-        response.status(500).json(error);
-    }
-}
 // const createBlog = async (request, response) => {
+//     const { user } = request.body;
 //     try {
-//         const blog =  new Blog(request.body);
+//         existingUser = await User.findById(user);
+//         const blog = new Blog(request.body);
 //         await blog.save();
-
+//         existingUser.blogs.push(blog);
+//         await existingUser.save();
 //         response.status(200).json('Blog saved successfully');
 //     } catch (error) {
 //         response.status(500).json(error);
 //     }
 // }
+const createBlog = async (request, response) => {
+    try {
+        const blog =  new Blog(request.body);
+        await blog.save();
+
+        response.status(200).json('Blog saved successfully');
+    } catch (error) {
+        response.status(500).json(error);
+    }
+}
 
 
 //getAllBlogs
@@ -36,11 +35,11 @@ const getAllBlogs = async (request, response) => {
     let blogs;
     try {
         if (username)
-            blogs = await Blog.find({ username: username }).populate("user");
+            blogs = await Blog.find({ username: username });
         else if (category)
             blogs = await Blog.find({ categories: category});
         else
-            blogs = await Blog.find({});
+            blogs = await Blog.find({})
         response.status(200).json({ blogs })
     } catch (error) {
         response.status(500).json(error)
@@ -50,7 +49,8 @@ const getAllBlogs = async (request, response) => {
 
 const getBlogById = async (request, response) => {
     try {
-        const blog = await Blog.findById(request.params.id);
+        const id = request.params.id;
+        const blog = await Blog.findById({_id:id});
 
         response.status(200).json({blog});
     } catch (error) {
@@ -61,13 +61,14 @@ const getBlogById = async (request, response) => {
 //Update Blog
 const updateBlog  = async (request, response) => {
     try {
-        const blog = await Blog.findById(request.params.id);
+        const id = request.params.id;
+        const blog = await Blog.findById({_id:id});
 
         if (!blog) {
             response.status(404).json({ msg: 'Blog not found' })
         }
         
-        await Blog.findByIdAndUpdate( request.params.id, { $set: request.body })
+        await Blog.findByIdAndUpdate({_id:id}, { $set: request.body })
 
         response.status(200).json('blog updated successfully');
     } catch (error) {
@@ -77,7 +78,8 @@ const updateBlog  = async (request, response) => {
 //deleteBlog
 const deleteBlog = async (request, response) => {
     try {
-        const blog = await Blog.findById(request.params.id);
+        const id = request.params.id;
+        const blog = await Blog.findById({_id:id});
         
     if (!blog) {
             response.status(404).json({ msg: 'Blog not found' })
@@ -90,8 +92,9 @@ const deleteBlog = async (request, response) => {
     }
 }
 
-const getByUserId = async (request, response, next) => {
+const getByUserId = async (request, response) => {
     const userId = request.params.id;
+
     let userBlogs;
     try {
         userBlogs = await User.findById(userId).populate("blogs");
@@ -102,6 +105,7 @@ const getByUserId = async (request, response, next) => {
         return response.status(404).json({ message: "No Blog Found" });
         }
         return response.status(200).json({ user: userBlogs });
+
 };
 module.exports = {
     deleteBlog,
