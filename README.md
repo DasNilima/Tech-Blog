@@ -36,14 +36,12 @@ git clone https://github.com/DasNilima/Tech-Blog.git
 
 You can obtain the MONGO_URI after create a collectoin on [mongodb atlas](https://www.mongodb.com/cloud/atlas).
 
-## Chanllenges faced
+## Features
 
- Initially, The process of implementing authentication using JSON web token (JWTs) to be a little more cumbersome while creating two endpoint - signup and login with JSON web token, however, after creating successfully authentiation part with hashed password, and then creating the authorization part that allows access to user by providing a token that cantain user IDs and a secret key that used for encode the token and with this secret key decode the information as well.
-
-## Future Improvements
- - Create a refresh Token route and sending refresh token request 
- - Create a social login options like Google ot Twitter accounts
- - Add more features with functionality, i,e. search implementation, like, comment features
+- Search for blogs by categories
+- write a blog select by categories
+- Secured Encryption of Accounts
+- write comment 
 
 
 <!-- ACKNOWLEDGMENTS -->
