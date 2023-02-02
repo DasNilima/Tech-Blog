@@ -20,7 +20,7 @@ import { authActions } from "../store";
 
 // const auths = [  'Login', 'Signup']
 const pages = [ 'Home', 'myBlogs','About','Contact'];
-const settings = ['Profile','Logout'];
+const settings = ['Logout'];
 
 function Header() { 
     const dispatch = useDispatch();

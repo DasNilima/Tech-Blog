@@ -23,7 +23,6 @@ const SubHeading = styled(Typography)`
 `;
 
 const Banner = () => {
-    
     return (
         <Image>
             <Heading>TECH-BLOG</Heading>

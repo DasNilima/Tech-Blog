@@ -38,10 +38,10 @@ axiosInstance.interceptors.response.use(
     }
 )
 
-///////////////////////////////
+
 // If success -> returns { isSuccess: true, data: object }
 // If fail -> returns { isFailure: true, status: string, msg: string, code: int }
-//////////////////////////////
+
 const processResponse = (response) => {
     if (response?.status === 200) {
         return { isSuccess: true, data: response.data }
@@ -55,35 +55,16 @@ const processResponse = (response) => {
     }
 }
 
-///////////////////////////////
+
 // If success -> returns { isSuccess: true, data: object }
 // If fail -> returns { isError: true, status: string, msg: string, code: int }
-//////////////////////////////
+
 const ProcessError = async (error) => {
     if (error.response) {
         // Request made and server responded with a status code 
         // that falls out of the range of 2xx
         if (error.response?.status === 403) {
-            // const { url, config } = error.response;
-            // console.log(error);
-            // try {
-            //     let response = await API.getRefreshToken({ token: getRefreshToken() });
-            //     if (response.isSuccess) {
                     sessionStorage.clear();
-            //         setAccessToken(response.data.accessToken);
-
-            //         const requestData = error.toJSON();
-
-            //         let response1 = await axios({
-            //             method: requestData.config.method,
-            //             url: requestData.config.baseURL + requestData.config.url,
-            //             headers: { "content-type": "application/json", "authorization": getAccessToken() },
-            //             params: requestData.config.params
-            //         });
-            //     }
-            // } catch (error) {
-            //     return Promise.reject(error)
-            // }
         } else {
             console.log("ERROR IN RESPONSE: ", error.toJSON());
             return {
@@ -114,32 +95,17 @@ const ProcessError = async (error) => {
 const API = {};
 
 for (const [key, value] of Object.entries(SERVICE_URLS)) {
-    API[key] = (body, showUploadProgress, showDownloadProgress) =>
+    API[key] = (body) =>
         axiosInstance({
             method: value.method,
             url: value.url,
             data: value.method === 'DELETE' ? {} : body,
             responseType: value.responseType,
-            // headers: {
-            //     authorization: getAccessToken(),
-            // },
-            TYPE: getType(value, body),
-            onUploadProgress: function(progressEvent) {
-                if (showUploadProgress) {
-                    let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-                    showUploadProgress(percentCompleted);
-                }
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             },
-            onDownloadProgress: function(progressEvent) {
-                if (showDownloadProgress) {
-                    let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-                    showDownloadProgress(percentCompleted);
-                }
-            }
+            TYPE: getType(value, body),
         });
 }
 
 export { API };
-
-
-// 'Authorization': `Bearer ${sessionStorage.getItem('token')}`

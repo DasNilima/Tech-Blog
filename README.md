@@ -41,7 +41,8 @@ You can obtain the MONGO_URI after create a collectoin on [mongodb atlas](https:
 - Search for blogs by categories
 - write a blog select by categories
 - Secured Encryption of Accounts
-- write comment 
+- create, read, edit and delete blog
+- write and delete comment 
 
 
 <!-- ACKNOWLEDGMENTS -->

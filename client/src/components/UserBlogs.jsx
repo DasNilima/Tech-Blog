@@ -15,8 +15,6 @@ const UserBlogs = () => {
         if (response.isSuccess) {
             setUser(response.data.user);
         }
-        // const data = await response.data;
-        // return setUser(data.user);
     }
     fetchData();
   }, [id]);

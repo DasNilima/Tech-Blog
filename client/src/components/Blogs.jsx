@@ -28,7 +28,6 @@ const Blogs = () => {
                             key={index}/>
                 </Link>
             </Grid> 
-                
             )) : <Box style={{color: 'black', margin: '30px 80px', fontSize: 18}}>
                     No data is available for selected category
                 </Box>
