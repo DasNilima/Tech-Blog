@@ -89,7 +89,6 @@
 //             data.append("name", filename)
 //             data.append("file", file)
 //             updateUser.photoURL= filename
-      
 //             try {
 //               await axios.post("/file/upload", data)
 //             } catch (error) {
@@ -116,7 +115,6 @@
 //                         </Box>
 //                     : null
 //                 }
-         
 //                     <SubHeading>Profile Picture</SubHeading>
 //                 <Image src={file ? URL.createObjectURL(file) : url +user.photoURL} />
 //                 <label htmlFor="fileInput">

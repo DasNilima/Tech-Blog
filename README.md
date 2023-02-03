@@ -43,7 +43,10 @@ You can obtain the MONGO_URI after create a collectoin on [mongodb atlas](https:
 - Secured Encryption of Accounts
 - create, read, edit and delete blog
 - write and delete comment 
+- Website are responsive to different screen size (mobile, tablet,laptop).
 
+### Demo-TECH-BLOG
+![GIF](screen-recording.gif)
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments

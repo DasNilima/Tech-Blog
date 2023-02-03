@@ -3,24 +3,14 @@ const User = require('../models/user');
 
 //CreateBlog
 
-// const createBlog = async (request, response) => {
-//     const { user } = request.body;
-//     try {
-//         existingUser = await User.findById(user);
-//         const blog = new Blog(request.body);
-//         await blog.save();
-//         existingUser.blogs.push(blog);
-//         await existingUser.save();
-//         response.status(200).json('Blog saved successfully');
-//     } catch (error) {
-//         response.status(500).json(error);
-//     }
-// }
 const createBlog = async (request, response) => {
+    const { user } = request.body;
     try {
-        const blog =  new Blog(request.body);
+        existingUser = await User.findById(user);
+        const blog = new Blog(request.body);
         await blog.save();
-
+        existingUser.blogs.push(blog);
+        await existingUser.save();
         response.status(200).json('Blog saved successfully');
     } catch (error) {
         response.status(500).json(error);

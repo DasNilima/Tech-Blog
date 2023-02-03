@@ -69,8 +69,6 @@ useEffect(() => {
         if (response.isSuccess) {
             setBlog(response.data.blog);
         }
-        // const data = await response.data;
-        // return setBlog(data.blog);
     }
     fetchData();
 }, [id]);
