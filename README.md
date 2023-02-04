@@ -46,7 +46,7 @@ You can obtain the MONGO_URI after create a collectoin on [mongodb atlas](https:
 - Website are responsive to different screen size (mobile, tablet,laptop).
 
 ### Demo-TECH-BLOG
-![GIF](screen-recording.gif)
+![GIF]()
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
